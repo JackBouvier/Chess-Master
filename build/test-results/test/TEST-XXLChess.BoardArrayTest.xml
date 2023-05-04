@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="XXLChess.BoardArrayTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-05-03T01:08:12" hostname="MacBook-Pro-5.local" time="4.12">
+  <properties/>
+  <testcase name="testBoardArrayConstructor()" classname="XXLChess.BoardArrayTest" time="3.624"/>
+  <testcase name="testDrawBoard()" classname="XXLChess.BoardArrayTest" time="0.479"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
