@@ -36,7 +36,7 @@ public class queen extends chessPiece {
             for (int i = x + dir; i >= 0 && i < 14; i += dir) {
                 if (Array[y][i].getPiece() == null) {
                     validMoves.add(Array[y][i].getTile());
-                } else if (Array[y][i].getPiece().getPieceColor().equals(this.color)) {
+                } else if (!Array[y][i].getPiece().getPieceColor().equals(this.color)) {
                     validMoves.add(Array[y][i].getTile());
                     break;
                 } else {
