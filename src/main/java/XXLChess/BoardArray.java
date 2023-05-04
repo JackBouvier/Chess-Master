@@ -57,18 +57,38 @@ class chessTile {
         app.rect(this.x, this.y, width, height);
     }
 
+    /**
+     * Sets the color of the tile.
+     *
+     * @param newColor the new color of the tile
+     */
     public void setTileColor(String newColor) {
         this.inputColor = newColor;
     }
 
+    /**
+     * Retrieves the color of the tile.
+     *
+     * @return the color of the tile
+     */
     public String getTileColor() {
         return this.inputColor;
     }
 
+    /**
+     * Retrieves the x-coordinate of the tile in the grid.
+     *
+     * @return the x-coordinate of the tile
+     */
     public int getTileX() {
         return this.x / 48;
     }
 
+    /**
+     * Retrieves the y-coordinate of the tile in the grid.
+     *
+     * @return the y-coordinate of the tile
+     */
     public int getTileY() {
         return this.y / 48;
     }
@@ -105,6 +125,11 @@ class chessPiece{
         this.moved = false;
     }
 
+    /**
+     * Moves the chess piece towards the selected tile.
+     *
+     * @param selectedTile the tile the piece is moving towards
+     */
     public void tick(chessTile selectedTile) {
         int x = selectedTile.getTileX();
         int y = selectedTile.getTileY();
@@ -160,26 +185,59 @@ class chessPiece{
         }
     }
 
+    /**
+     * Draws the chess piece on the PApplet canvas.
+     *
+     * @param app the PApplet canvas
+     */
     public void draw(PApplet app) {
         app.image(this.image, this.x, this.y);
     }
 
+    /**
+     * Returns the color of the chess piece.
+     *
+     * @return the color of the chess piece
+     */
     public String getPieceColor() {
         return this.color;
     }
 
+    /**
+     * Returns the value of the chess piece.
+     *
+     * @return the value of the chess piece
+     */
     public double getPieceValue() {
         return this.value;
     }
 
+    /**
+     * Returns the x-coordinate of the chess piece.
+     *
+     * @return the x-coordinate of the chess piece
+     */
     public int getPieceX() {
         return this.x / 48;
     }
 
+    /**
+     * Returns the y-coordinate of the chess piece.
+     *
+     * @return the y-coordinate of the chess piece
+     */
     public int getPieceY() {
         return this.y / 48;
     }
 
+    /**
+     * Retrieves the valid moves for the chess piece at the given position.
+     *
+     * @param x          the x-coordinate of the chess piece
+     * @param y          the y-coordinate of the chess piece
+     * @param boardArray the 2D array representing the chess board
+     * @return the list of valid moves for the chess piece
+     */
     public ArrayList<chessTile> getMoves(int x, int y, Tuple<chessPiece, chessTile>[][] boardArray){
         return null;
     }
@@ -204,18 +262,38 @@ class Tuple<Piece, Tile> {
         this.second = second;
     }
 
+    /**
+     * Returns the first element of the tuple.
+     *
+     * @return the first element of the tuple
+     */
     public Piece getPiece() {
         return first;
     }
 
+    /**
+     * Returns the second element of the tuple.
+     *
+     * @return the second element of the tuple
+     */
     public Tile getTile() {
         return second;
     }
 
+    /**
+     * Sets the first element of the tuple.
+     *
+     * @param first the first element to set
+     */
     public void setPiece(Piece first) {
         this.first = first;
     }
 
+    /**
+     * Sets the second element of the tuple.
+     *
+     * @param second the second element to set
+     */
     public void setTile(Tile second) {
         this.second = second;
     }
@@ -287,6 +365,11 @@ public class BoardArray {
         }
     }
 
+    /**
+     * Returns the 2D array representing the board array.
+     *
+     * @return the board array
+     */
     public  Tuple<chessPiece, chessTile>[][] getBoardArray(){
         return this.BoardArray;
     }

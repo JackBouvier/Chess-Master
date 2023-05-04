@@ -7,6 +7,14 @@ public class archbishop extends chessPiece{
         super(x, y, image, color, 7.5);
     }
 
+    /**
+     * Returns the list of valid moves for the archbishop at the specified position.
+     *
+     * @param x      the x-coordinate of the archbishop
+     * @param y      the y-coordinate of the archbishop
+     * @param Array  the 2D array representing the game board
+     * @return       the list of valid moves for the archbishop
+     */
     public ArrayList<chessTile> getMoves(int x, int y, Tuple<chessPiece, chessTile>[][] Array) {
         ArrayList<chessTile> validMoves = new ArrayList<>();
         //Knight movement

@@ -3,6 +3,10 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class AI {
+    
+     /**
+     * Performs the AI move based on the current game state.
+     */
     public static void Ai(){
         App.AiTick++;
         if (!App.move && App.Ai && App.AiTick >= 200 && !App.isWhiteTurn){

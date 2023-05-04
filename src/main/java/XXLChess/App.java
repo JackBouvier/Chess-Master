@@ -318,6 +318,11 @@ public class App extends PApplet {
         }
     }
 	
+    /**
+     * The main method to start the application.
+     *
+     * @param args The command-line arguments.
+     */
     public static void main(String[] args) {
         PApplet.main("XXLChess.App");
     }
