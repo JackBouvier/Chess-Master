@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TileColour.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Chess Master</a> &gt; <a href="index.source.html" class="el_package">XXLChess</a> &gt; <span class="el_source">TileColour.java</span></div><h1>TileColour.java</h1><pre class="source lang-java linenums">package XXLChess;
+import java.util.ArrayList;
+
+/**
+ * TileColour class is responsible for managing the tile colors of the chessboard,
+ * including refreshing, removing trails and checks, and showing valid moves.
+ */
+<span class="nc" id="L8">public class TileColour {</span>
+    
+    /**
+     * Refreshes the board by resetting tile colors to their original state.
+     */
+    public static void refreshBoard(){
+<span class="nc bnc" id="L14" title="All 2 branches missed.">        for (int i = 0; i &lt; 14; i++) {</span>
+<span class="nc bnc" id="L15" title="All 2 branches missed.">            for (int j = 0; j &lt; 14; j++) {</span>
+<span class="nc" id="L16">                chessTile tile = App.boardArray[i][j].getTile();</span>
+<span class="nc bnc" id="L17" title="All 2 branches missed.">                if (tile.getTileColor().equals(&quot;blue1&quot;)){</span>
+<span class="nc" id="L18">                    App.boardArray[i][j].getTile().setTileColor(&quot;white&quot;);</span>
+                }
+<span class="nc bnc" id="L20" title="All 2 branches missed.">                else if (tile.getTileColor().equals(&quot;blue2&quot;)){</span>
+<span class="nc" id="L21">                    App.boardArray[i][j].getTile().setTileColor(&quot;green&quot;);</span>
+                }
+<span class="nc bnc" id="L23" title="All 2 branches missed.">                else if (tile.getTileColor().equals(&quot;red1&quot;)){</span>
+<span class="nc" id="L24">                    App.boardArray[i][j].getTile().setTileColor(&quot;white&quot;);</span>
+                }
+<span class="nc bnc" id="L26" title="All 2 branches missed.">                else if (tile.getTileColor().equals(&quot;red2&quot;)){</span>
+<span class="nc" id="L27">                    App.boardArray[i][j].getTile().setTileColor(&quot;green&quot;);</span>
+                }
+<span class="nc bnc" id="L29" title="All 2 branches missed.">                else if (tile.getTileColor().equals(&quot;lightGreen1&quot;)){</span>
+<span class="nc" id="L30">                    App.boardArray[i][j].getTile().setTileColor(&quot;white&quot;);</span>
+                }
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                else if (tile.getTileColor().equals(&quot;lightGreen2&quot;)){</span>
+<span class="nc" id="L33">                    App.boardArray[i][j].getTile().setTileColor(&quot;green&quot;);</span>
+                }
+            }
+        }
+<span class="nc" id="L37">    }</span>
+
+    /**
+     * Removes the trail of the last moved piece by resetting the tile colors.
+     */
+    public static void removeTrail(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        for (int i = 0; i &lt; 14; i++) {</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            for (int j = 0; j &lt; 14; j++) {</span>
+<span class="nc" id="L45">                chessTile tile = App.boardArray[i][j].getTile();</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">                if (tile.getTileColor().equals(&quot;yellow1&quot;)){</span>
+<span class="nc" id="L47">                    App.boardArray[i][j].getTile().setTileColor(&quot;white&quot;);</span>
+                }
+<span class="nc bnc" id="L49" title="All 2 branches missed.">                else if (tile.getTileColor().equals(&quot;yellow2&quot;)){</span>
+<span class="nc" id="L50">                    App.boardArray[i][j].getTile().setTileColor(&quot;green&quot;);</span>
+                }
+            }
+        }
+<span class="nc" id="L54">    }</span>
+
+    /**
+     * Removes the check indication by resetting the tile colors.
+     */
+    public static void removeCheck(){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        for (int i = 0; i &lt; 14; i++) {</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            for (int j = 0; j &lt; 14; j++) {</span>
+<span class="nc" id="L62">                chessTile tile = App.boardArray[i][j].getTile();</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                if (tile.getTileColor().equals(&quot;DarkRed1&quot;)){</span>
+<span class="nc" id="L64">                    App.boardArray[i][j].getTile().setTileColor(&quot;white&quot;);</span>
+                }
+<span class="nc bnc" id="L66" title="All 2 branches missed.">                else if (tile.getTileColor().equals(&quot;DarkRed2&quot;)){</span>
+<span class="nc" id="L67">                    App.boardArray[i][j].getTile().setTileColor(&quot;green&quot;);</span>
+                }
+            }
+        }
+<span class="nc" id="L71">    }</span>
+
+    /**
+     * Shows the valid moves of the selected piece by changing the tile colors.
+     *
+     * @param validMoves      an ArrayList of valid chessTile moves for the selected piece
+     * @param selectedPiece   the chessPiece that is selected
+     */
+    public static void showMoves(ArrayList&lt;chessTile&gt; validMoves, chessPiece selectedPiece) {
+<span class="nc" id="L80">        int pieceX = selectedPiece.getPieceX();</span>
+<span class="nc" id="L81">        int pieceY = selectedPiece.getPieceY();</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (App.boardArray[pieceY][pieceX].getTile().getTileColor().equals(&quot;white&quot;)) {</span>
+<span class="nc" id="L83">            App.boardArray[pieceY][pieceX].getTile().setTileColor(&quot;lightGreen1&quot;);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        } else if (App.boardArray[pieceY][pieceX].getTile().getTileColor().equals(&quot;green&quot;)) {</span>
+<span class="nc" id="L85">            App.boardArray[pieceY][pieceX].getTile().setTileColor(&quot;lightGreen2&quot;);</span>
+        }
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (validMoves != null) {</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            for (chessTile tile : validMoves) {</span>
+<span class="nc" id="L89">                int tileX = tile.getTileX();</span>
+<span class="nc" id="L90">                int tileY = tile.getTileY();</span>
+<span class="nc" id="L91">                chessPiece targetPiece = App.boardArray[tileY][tileX].getPiece();</span>
+    
+                // Check if the target square has a piece with a different color than the selected piece
+<span class="nc bnc" id="L94" title="All 4 branches missed.">                if (targetPiece != null &amp;&amp; !targetPiece.getPieceColor().equals(selectedPiece.getPieceColor())) {</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                    if (App.boardArray[tileY][tileX].getTile().getTileColor().equals(&quot;white&quot;)) {</span>
+<span class="nc" id="L96">                        App.boardArray[tileY][tileX].getTile().setTileColor(&quot;red1&quot;);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">                    } else if (App.boardArray[tileY][tileX].getTile().getTileColor().equals(&quot;green&quot;)) {</span>
+<span class="nc" id="L98">                        App.boardArray[tileY][tileX].getTile().setTileColor(&quot;red2&quot;);</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">                    } else if (App.boardArray[tileY][tileX].getTile().getTileColor().equals(&quot;yellow1&quot;)) {</span>
+<span class="nc" id="L100">                        App.boardArray[tileY][tileX].getTile().setTileColor(&quot;red1&quot;);</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">                    } else if (App.boardArray[tileY][tileX].getTile().getTileColor().equals(&quot;yellow2&quot;)) {</span>
+<span class="nc" id="L102">                        App.boardArray[tileY][tileX].getTile().setTileColor(&quot;red2&quot;);</span>
+                    }
+                } else {
+<span class="nc bnc" id="L105" title="All 2 branches missed.">                    if (App.boardArray[tileY][tileX].getTile().getTileColor().equals(&quot;white&quot;)) {</span>
+<span class="nc" id="L106">                        App.boardArray[tileY][tileX].getTile().setTileColor(&quot;blue1&quot;);</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">                    } else if (App.boardArray[tileY][tileX].getTile().getTileColor().equals(&quot;green&quot;)) {</span>
+<span class="nc" id="L108">                        App.boardArray[tileY][tileX].getTile().setTileColor(&quot;blue2&quot;);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">                    } else if (App.boardArray[tileY][tileX].getTile().getTileColor().equals(&quot;yellow1&quot;)) {</span>
+<span class="nc" id="L110">                        App.boardArray[tileY][tileX].getTile().setTileColor(&quot;blue1&quot;);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">                    } else if (App.boardArray[tileY][tileX].getTile().getTileColor().equals(&quot;yellow2&quot;)) {</span>
+<span class="nc" id="L112">                        App.boardArray[tileY][tileX].getTile().setTileColor(&quot;blue2&quot;);</span>
+                    }
+                }
+<span class="nc" id="L115">            }</span>
+        }
+<span class="nc" id="L117">    }    </span>
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

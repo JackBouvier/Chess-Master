@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>knight.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Chess Master</a> &gt; <a href="index.source.html" class="el_package">XXLChess</a> &gt; <span class="el_source">knight.java</span></div><h1>knight.java</h1><pre class="source lang-java linenums">package XXLChess;
+import processing.core.PImage;
+import java.util.ArrayList;
+
+/**
+ * The knight class represents a knight chess piece in the game of chess.
+ * It extends the chessPiece class and provides knight-specific movement logic.
+ */
+public class knight extends chessPiece {
+    
+    /**
+     * Constructor for the knight class.
+     *
+     * @param x     The x-coordinate of the knight on the board.
+     * @param y     The y-coordinate of the knight on the board.
+     * @param image The image of the knight.
+     * @param color The color of the knight (either &quot;white&quot; or &quot;black&quot;).
+     */
+    public knight(int x, int y, PImage image, String color) {
+<span class="fc" id="L20">        super(x, y, image, color, 2);</span>
+<span class="fc" id="L21">    }</span>
+
+    /**
+     * Gets the valid moves for the knight piece based on its position on the board.
+     *
+     * @param x     The x-coordinate of the knight on the board.
+     * @param y     The y-coordinate of the knight on the board.
+     * @param Array The current state of the chess board.
+     * @return An ArrayList of valid chessTile objects that the knight can move to.
+     */
+    public ArrayList&lt;chessTile&gt; getMoves(int x, int y, Tuple&lt;chessPiece, chessTile&gt;[][] Array) {
+<span class="fc" id="L32">        ArrayList&lt;chessTile&gt; validMoves = new ArrayList&lt;&gt;();</span>
+        //Knight movement
+<span class="fc" id="L34">        int[] knightMovesX = {2, 1, -1, -2, -2, -1, 1, 2};</span>
+<span class="fc" id="L35">        int[] knightMovesY = {1, 2, 2, 1, -1, -2, -2, -1};</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (int k = 0; k &lt; knightMovesX.length; k++) {</span>
+<span class="fc" id="L37">            int newX = x + knightMovesX[k];</span>
+<span class="fc" id="L38">            int newY = y + knightMovesY[k];</span>
+
+<span class="pc bpc" id="L40" title="4 of 8 branches missed.">            if (newX &gt;= 0 &amp;&amp; newX &lt; 14 &amp;&amp; newY &gt;= 0 &amp;&amp; newY &lt; 14) {</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">                if (Array[newY][newX].getPiece() == null ||</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">                    !Array[newY][newX].getPiece().getPieceColor().equals(this.color)) {</span>
+<span class="fc" id="L43">                    validMoves.add(Array[newY][newX].getTile());</span>
+                }
+            }
+        }
+<span class="fc" id="L47">        return validMoves;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

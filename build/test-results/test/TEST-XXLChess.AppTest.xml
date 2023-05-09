@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="XXLChess.AppTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-05-09T03:11:02" hostname="MacBook-Pro-6.local" time="0.094">
+  <properties/>
+  <testcase name="testSettings()" classname="XXLChess.AppTest" time="0.081"/>
+  <testcase name="testDraw()" classname="XXLChess.AppTest" time="0.002"/>
+  <testcase name="testKeyPressed()" classname="XXLChess.AppTest" time="0.002"/>
+  <testcase name="testMouseClicked()" classname="XXLChess.AppTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

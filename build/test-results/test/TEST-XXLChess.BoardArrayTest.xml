@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="XXLChess.BoardArrayTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-05-09T01:33:51" hostname="MacBook-Pro-6.local" time="2.624">
+<testsuite name="XXLChess.BoardArrayTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-05-09T03:11:05" hostname="MacBook-Pro-6.local" time="2.544">
   <properties/>
-  <testcase name="testTuple()" classname="XXLChess.BoardArrayTest" time="0.461"/>
-  <testcase name="testDrawTile()" classname="XXLChess.BoardArrayTest" time="2.07"/>
-  <testcase name="testChessPiece()" classname="XXLChess.BoardArrayTest" time="0.02"/>
-  <testcase name="testDrawPiece()" classname="XXLChess.BoardArrayTest" time="0.007"/>
-  <testcase name="testBoardArray()" classname="XXLChess.BoardArrayTest" time="0.016"/>
+  <testcase name="testTuple()" classname="XXLChess.BoardArrayTest" time="0.484"/>
+  <testcase name="testDrawTile()" classname="XXLChess.BoardArrayTest" time="1.952"/>
+  <testcase name="testChessPiece()" classname="XXLChess.BoardArrayTest" time="0.029"/>
+  <testcase name="testDrawPiece()" classname="XXLChess.BoardArrayTest" time="0.01"/>
+  <testcase name="testBoardArray()" classname="XXLChess.BoardArrayTest" time="0.013"/>
   <testcase name="testChessTile()" classname="XXLChess.BoardArrayTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

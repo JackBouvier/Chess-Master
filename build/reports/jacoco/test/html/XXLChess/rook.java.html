@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>rook.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Chess Master</a> &gt; <a href="index.source.html" class="el_package">XXLChess</a> &gt; <span class="el_source">rook.java</span></div><h1>rook.java</h1><pre class="source lang-java linenums">package XXLChess;
+import processing.core.PImage;
+import java.util.ArrayList;
+
+/**
+ * The rook class represents a rook chess piece in the game of chess.
+ * It extends the chessPiece class and provides rook-specific movement logic.
+ */
+public class rook extends chessPiece {
+    
+    /**
+     * Constructor for the rook class.
+     *
+     * @param x     The x-coordinate of the rook on the board.
+     * @param y     The y-coordinate of the rook on the board.
+     * @param image The image of the rook.
+     * @param color The color of the rook (either &quot;white&quot; or &quot;black&quot;).
+     */
+    public rook(int x, int y, PImage image, String color) {
+<span class="fc" id="L20">        super(x, y, image, color, 5.25);</span>
+<span class="fc" id="L21">    }</span>
+
+    /**
+     * Gets the valid moves for the rook piece based on its position on the board.
+     *
+     * @param x     The x-coordinate of the rook on the board.
+     * @param y     The y-coordinate of the rook on the board.
+     * @param Array The current state of the chess board.
+     * @return An ArrayList of valid chessTile objects that the rook can move to.
+     */
+    public ArrayList&lt;chessTile&gt; getMoves(int x, int y, Tuple&lt;chessPiece, chessTile&gt;[][] Array) {
+<span class="fc" id="L32">        ArrayList&lt;chessTile&gt; validMoves = new ArrayList&lt;&gt;();</span>
+        // Rook movement
+<span class="fc" id="L34">        int[] rookDirs = {-1, 1};</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (int dir : rookDirs) {</span>
+<span class="fc bfc" id="L36" title="All 4 branches covered.">            for (int i = x + dir; i &gt;= 0 &amp;&amp; i &lt; 14; i += dir) {</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">                if (Array[y][i].getPiece() == null) {</span>
+<span class="fc" id="L38">                    validMoves.add(Array[y][i].getTile());</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">                } else if (!Array[y][i].getPiece().getPieceColor().equals(this.color)) {</span>
+<span class="nc" id="L40">                    validMoves.add(Array[y][i].getTile());</span>
+<span class="nc" id="L41">                    break;</span>
+                } else {
+                    break;
+                }
+            }
+<span class="fc bfc" id="L46" title="All 4 branches covered.">            for (int i = y + dir; i &gt;= 0 &amp;&amp; i &lt; 14; i += dir) {</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">                if (Array[i][x].getPiece() == null) {</span>
+<span class="fc" id="L48">                    validMoves.add(Array[i][x].getTile());</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">                } else if (!Array[i][x].getPiece().getPieceColor().equals(this.color)) {</span>
+<span class="nc" id="L50">                    validMoves.add(Array[i][x].getTile());</span>
+<span class="nc" id="L51">                    break;</span>
+                } else {
+                    break;
+                }
+            }
+        }
+<span class="fc" id="L57">        return validMoves;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

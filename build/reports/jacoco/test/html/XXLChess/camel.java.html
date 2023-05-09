@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>camel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Chess Master</a> &gt; <a href="index.source.html" class="el_package">XXLChess</a> &gt; <span class="el_source">camel.java</span></div><h1>camel.java</h1><pre class="source lang-java linenums">package XXLChess;
+import processing.core.PImage;
+import java.util.ArrayList;
+
+/**
+ * The camel class represents a custom chess piece in the game of chess,
+ * which moves in an extended L-shape pattern (3 steps in one direction
+ * and 1 step in a perpendicular direction).
+ * It extends the chessPiece class and provides camel-specific movement logic.
+ */
+public class camel extends chessPiece {
+    
+    /**
+     * Constructor for the camel class.
+     *
+     * @param x     The x-coordinate of the camel on the board.
+     * @param y     The y-coordinate of the camel on the board.
+     * @param image The image of the camel.
+     * @param color The color of the camel (either &quot;white&quot; or &quot;black&quot;).
+     */
+    public camel(int x, int y, PImage image, String color) {
+<span class="fc" id="L22">        super(x, y, image, color, 2);</span>
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * Gets the valid moves for the camel piece based on its position on the board.
+     *
+     * @param x     The x-coordinate of the camel on the board.
+     * @param y     The y-coordinate of the camel on the board.
+     * @param Array The current state of the chess board.
+     * @return An ArrayList of valid chessTile objects that the camel can move to.
+     */
+    public ArrayList&lt;chessTile&gt; getMoves(int x, int y, Tuple&lt;chessPiece, chessTile&gt;[][] Array) {
+<span class="fc" id="L34">        ArrayList&lt;chessTile&gt; validMoves = new ArrayList&lt;&gt;();</span>
+        //camel movement
+<span class="fc" id="L36">        int[] knightMovesX = {3, 1, -1, -3, -3, -1, 1, 3};</span>
+<span class="fc" id="L37">        int[] knightMovesY = {1, 3, 3, 1, -1, -3, -3, -1};</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for (int k = 0; k &lt; knightMovesX.length; k++) {</span>
+<span class="fc" id="L39">            int newX = x + knightMovesX[k];</span>
+<span class="fc" id="L40">            int newY = y + knightMovesY[k];</span>
+
+<span class="pc bpc" id="L42" title="4 of 8 branches missed.">            if (newX &gt;= 0 &amp;&amp; newX &lt; 14 &amp;&amp; newY &gt;= 0 &amp;&amp; newY &lt; 14) {</span>
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">                if (Array[newY][newX].getPiece() == null ||</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">                    !Array[newY][newX].getPiece().getPieceColor().equals(this.color)) {</span>
+<span class="fc" id="L45">                    validMoves.add(Array[newY][newX].getTile());</span>
+                }
+            }
+        }
+<span class="fc" id="L49">        return validMoves;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

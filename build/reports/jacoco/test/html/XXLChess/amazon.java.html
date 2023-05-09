@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>amazon.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Chess Master</a> &gt; <a href="index.source.html" class="el_package">XXLChess</a> &gt; <span class="el_source">amazon.java</span></div><h1>amazon.java</h1><pre class="source lang-java linenums">package XXLChess;
+import processing.core.PImage;
+import java.util.ArrayList;
+
+public class amazon extends chessPiece {
+    public amazon(int x, int y, PImage image, String color) {
+<span class="fc" id="L7">        super(x, y, image, color, 12);</span>
+<span class="fc" id="L8">    }</span>
+
+    /**
+     * Returns the list of valid moves for the amazon at the specified position.
+     *
+     * @param x      the x-coordinate of the amazon
+     * @param y      the y-coordinate of the amazon
+     * @param Array  the 2D array representing the game board
+     * @return       the list of valid moves for the amazon
+     */
+    public ArrayList&lt;chessTile&gt; getMoves(int x, int y, Tuple&lt;chessPiece, chessTile&gt;[][] Array) {
+<span class="fc" id="L19">        ArrayList&lt;chessTile&gt; validMoves = new ArrayList&lt;&gt;();</span>
+        // Rook movement
+<span class="fc" id="L21">        int[] rookDirs = {-1, 1};</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        for (int dir : rookDirs) {</span>
+<span class="fc bfc" id="L23" title="All 4 branches covered.">            for (int i = x + dir; i &gt;= 0 &amp;&amp; i &lt; 14; i += dir) {</span>
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">                if (Array[y][i].getPiece() == null) {</span>
+<span class="fc" id="L25">                    validMoves.add(Array[y][i].getTile());</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">                } else if (!Array[y][i].getPiece().getPieceColor().equals(this.color)) {</span>
+<span class="nc" id="L27">                    validMoves.add(Array[y][i].getTile());</span>
+<span class="nc" id="L28">                    break;</span>
+                } else {
+                    break;
+                }
+            }
+<span class="fc bfc" id="L33" title="All 4 branches covered.">            for (int i = y + dir; i &gt;= 0 &amp;&amp; i &lt; 14; i += dir) {</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">                if (Array[i][x].getPiece() == null) {</span>
+<span class="fc" id="L35">                    validMoves.add(Array[i][x].getTile());</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                } else if (!Array[i][x].getPiece().getPieceColor().equals(this.color)) {</span>
+<span class="nc" id="L37">                    validMoves.add(Array[i][x].getTile());</span>
+<span class="nc" id="L38">                    break;</span>
+                } else {
+                    break;
+                }
+            }
+        }
+        //Knight movement
+<span class="fc" id="L45">        int[] knightMovesX = {2, 1, -1, -2, -2, -1, 1, 2};</span>
+<span class="fc" id="L46">        int[] knightMovesY = {1, 2, 2, 1, -1, -2, -2, -1};</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (int k = 0; k &lt; knightMovesX.length; k++) {</span>
+<span class="fc" id="L48">            int newX = x + knightMovesX[k];</span>
+<span class="fc" id="L49">            int newY = y + knightMovesY[k];</span>
+
+<span class="pc bpc" id="L51" title="4 of 8 branches missed.">            if (newX &gt;= 0 &amp;&amp; newX &lt; 14 &amp;&amp; newY &gt;= 0 &amp;&amp; newY &lt; 14) {</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">                if (Array[newY][newX].getPiece() == null ||</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">                    !Array[newY][newX].getPiece().getPieceColor().equals(this.color)) {</span>
+<span class="fc" id="L54">                    validMoves.add(Array[newY][newX].getTile());</span>
+                }
+            }
+        }
+        //Bishop movement
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        for (int dx = -1; dx &lt;= 1; dx += 2) {</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            for (int dy = -1; dy &lt;= 1; dy += 2) {</span>
+<span class="fc" id="L61">                int i = x + dx;</span>
+<span class="fc" id="L62">                int j = y + dy;</span>
+<span class="pc bpc" id="L63" title="1 of 8 branches missed.">                while (i &gt;= 0 &amp;&amp; i &lt; 14 &amp;&amp; j &gt;= 0 &amp;&amp; j &lt; 14) {</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">                    if (Array[j][i].getPiece() == null) {</span>
+<span class="fc" id="L65">                        validMoves.add(Array[j][i].getTile());</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">                    } else if (!Array[j][i].getPiece().getPieceColor().equals(this.color)) {</span>
+<span class="nc" id="L67">                        validMoves.add(Array[j][i].getTile());</span>
+<span class="nc" id="L68">                        break;</span>
+                    } else {
+                        break;
+                    }
+<span class="fc" id="L72">                    i += dx;</span>
+<span class="fc" id="L73">                    j += dy;</span>
+                }
+            }
+        }
+<span class="fc" id="L77">        return validMoves;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

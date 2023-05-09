@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>boardSetup.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Chess Master</a> &gt; <a href="index.source.html" class="el_package">XXLChess</a> &gt; <span class="el_source">boardSetup.java</span></div><h1>boardSetup.java</h1><pre class="source lang-java linenums">package XXLChess;
+import processing.core.PApplet;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+/**
+ * The boardSetup class is responsible for initializing the chess board
+ * by reading the piece positions from a text file and setting up the pieces
+ * on the board accordingly.
+ */
+public class boardSetup {
+    private PApplet parent;
+    
+    /**
+     * Constructor for the boardSetup class.
+     *
+     * @param parent The PApplet instance from the main class.
+     */
+<span class="nc" id="L20">    public boardSetup(PApplet parent) {</span>
+<span class="nc" id="L21">        this.parent = parent;</span>
+<span class="nc" id="L22">    }</span>
+
+    /**
+     * Reads the piece layout from a text file and returns a 2D String array
+     * representing the board.
+     *
+     * @param layoutPath The file path of the text file containing the piece layout.
+     * @return A 2D String array representing the board layout.
+     */
+    public String[][] readPieceInput(String layoutPath) {
+<span class="nc" id="L32">        String[][] pieceInput = new String[14][14];</span>
+        try {
+<span class="nc" id="L34">            File f = new File(layoutPath);</span>
+<span class="nc" id="L35">            Scanner scan = new Scanner(f);</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            for (int i = 0; i &lt; 14; i++) {</span>
+                String[] tempArray;
+                try {
+<span class="nc" id="L39">                    tempArray = scan.nextLine().split(&quot;&quot;);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                    for (int k = tempArray.length; k &lt; 14; k++) {</span>
+<span class="nc" id="L41">                        String[] newArray = new String[tempArray.length + 1];</span>
+<span class="nc" id="L42">                        System.arraycopy(tempArray, 0, newArray, 0, tempArray.length);</span>
+<span class="nc" id="L43">                        newArray[tempArray.length] = &quot; &quot;;</span>
+<span class="nc" id="L44">                        tempArray = newArray;</span>
+                    }
+<span class="nc" id="L46">                } catch (Exception e) {</span>
+<span class="nc" id="L47">                    tempArray = new String[14];</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">                    for (int k = 0; k &lt; 14; k++) {</span>
+<span class="nc" id="L49">                        tempArray[k] = &quot; &quot;;</span>
+                    }
+<span class="nc" id="L51">                }</span>
+<span class="nc" id="L52">                pieceInput[i] = tempArray;</span>
+            }
+<span class="nc" id="L54">            scan.close();</span>
+<span class="nc" id="L55">        } catch (FileNotFoundException e) {</span>
+<span class="nc" id="L56">            e.printStackTrace();</span>
+<span class="nc" id="L57">        }</span>
+<span class="nc" id="L58">        return pieceInput;</span>
+    }
+
+    /**
+     * Sets up the initial pieces on the chess board based on the 2D String array
+     * representing the board layout.
+     *
+     * @param pieceInput The 2D String array representing the board layout.
+     * @param boardArray The 2D Tuple array representing the current state of the chess board.
+     */
+    public void initialPieces(String[][] pieceInput, Tuple&lt;chessPiece, chessTile&gt;[][] boardArray) {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">    for (int i = 0; i &lt; 14; i++) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        for (int j = 0; j &lt; 14; j++) {</span>
+<span class="nc bnc" id="L71" title="All 4 branches missed.">            if (pieceInput[i][j] != null &amp;&amp; boardArray[i][j] != null) {</span>
+<span class="nc" id="L72">                String pieceCode = pieceInput[i][j];</span>
+<span class="nc" id="L73">                chessPiece piece = null;</span>
+<span class="nc bnc" id="L74" title="All 23 branches missed.">                    switch (pieceCode) {</span>
+                        case &quot;a&quot;:
+<span class="nc" id="L76">                            piece = new amazon(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-amazon.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L77">                            break;</span>
+                        case &quot;A&quot;:
+<span class="nc" id="L79">                            piece = new amazon(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-amazon.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L80">                            break;</span>
+                        case &quot;h&quot;:
+<span class="nc" id="L82">                            piece = new archbishop(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-archbishop.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L83">                            break;</span>
+                        case &quot;H&quot;:
+<span class="nc" id="L85">                            piece = new archbishop(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-archbishop.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L86">                            break;</span>
+                        case &quot;b&quot;:
+<span class="nc" id="L88">                            piece = new bishop(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-bishop.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L89">                            break;</span>
+                        case &quot;B&quot;:
+<span class="nc" id="L91">                            piece = new bishop(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-bishop.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L92">                            break;</span>
+                        case &quot;c&quot;:
+<span class="nc" id="L94">                            piece = new camel(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-camel.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L95">                            break;</span>
+                        case &quot;C&quot;:
+<span class="nc" id="L97">                            piece = new camel(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-camel.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L98">                            break;</span>
+                        case &quot;e&quot;:
+<span class="nc" id="L100">                            piece = new chancellor(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-chancellor.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L101">                            break;</span>
+                        case &quot;E&quot;:
+<span class="nc" id="L103">                            piece = new chancellor(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-chancellor.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L104">                            break;</span>
+                        case &quot;k&quot;:
+<span class="nc" id="L106">                            piece = new king(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-king.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L107">                            break;</span>
+                        case &quot;K&quot;:
+<span class="nc" id="L109">                            piece = new king(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-king.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L110">                            break;</span>
+                        case &quot;g&quot;:
+<span class="nc" id="L112">                            piece = new guard(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-knight-king.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L113">                            break;</span>
+                        case &quot;G&quot;:
+<span class="nc" id="L115">                            piece = new guard(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-knight-king.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L116">                            break;</span>
+                        case &quot;n&quot;:
+<span class="nc" id="L118">                            piece = new knight(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-knight.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L119">                            break;</span>
+                        case &quot;N&quot;:
+<span class="nc" id="L121">                            piece = new knight(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-knight.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L122">                            break;</span>
+                        case &quot;p&quot;:
+<span class="nc" id="L124">                            piece = new pawn(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-pawn.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L125">                            break;</span>
+                        case &quot;P&quot;:
+<span class="nc" id="L127">                            piece = new pawn(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-pawn.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L128">                            break;</span>
+                        case &quot;q&quot;:
+<span class="nc" id="L130">                            piece = new queen(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-queen.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L131">                            break;</span>
+                        case &quot;Q&quot;:
+<span class="nc" id="L133">                            piece = new queen(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-queen.png&quot;), &quot;black&quot;);</span>
+<span class="nc" id="L134">                            break;</span>
+                        case &quot;r&quot;:
+<span class="nc" id="L136">                            piece = new rook(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/w-rook.png&quot;), &quot;white&quot;);</span>
+<span class="nc" id="L137">                            break;</span>
+                        case &quot;R&quot;:
+<span class="nc" id="L139">                            piece = new rook(j, i, parent.loadImage(&quot;src/main/resources/XXLChess/b-rook.png&quot;), &quot;black&quot;);</span>
+                            break;
+                    }
+<span class="nc bnc" id="L142" title="All 2 branches missed.">                    if (piece != null) {</span>
+<span class="nc" id="L143">                        boardArray[i][j].setPiece(piece);</span>
+                    }
+                }
+            }
+        }
+<span class="nc" id="L148">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

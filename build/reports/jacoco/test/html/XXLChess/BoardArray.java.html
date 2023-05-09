@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BoardArray.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Chess Master</a> &gt; <a href="index.source.html" class="el_package">XXLChess</a> &gt; <span class="el_source">BoardArray.java</span></div><h1>BoardArray.java</h1><pre class="source lang-java linenums">package XXLChess;
+import processing.core.PApplet;
+import processing.core.PImage;
+import java.util.ArrayList;
+
+// Chess Tile class --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+ * Chess Tile class
+ */
+class chessTile {
+    private int x;
+    private int y;
+    private String inputColor;
+<span class="fc" id="L14">    private static int width = 48;</span>
+<span class="fc" id="L15">    private static int height = 48;</span>
+
+    /**
+     * Constructor for the chessTile class.
+     *
+     * @param x          x-coordinate of the tile
+     * @param y          y-coordinate of the tile
+     * @param inputColor color of the tile
+     */
+<span class="fc" id="L24">    public chessTile(int x, int y, String inputColor) {</span>
+<span class="fc" id="L25">        this.x = x;</span>
+<span class="fc" id="L26">        this.y = y;</span>
+<span class="fc" id="L27">        this.inputColor = inputColor;</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Draws the tile on the given PApplet instance.
+     *
+     * @param app PApplet instance on which to draw the tile
+     */
+    public void draw(PApplet app) {
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">        if (this.inputColor.equals(&quot;white&quot;)) {</span>
+<span class="fc" id="L37">            app.fill(255);</span>
+        }
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (this.inputColor.equals(&quot;green&quot;)) {</span>
+<span class="nc" id="L40">            app.fill(2, 88, 57);</span>
+        }
+<span class="pc bpc" id="L42" title="2 of 4 branches missed.">        if (this.inputColor.equals(&quot;blue1&quot;) || this.inputColor.equals(&quot;blue2&quot;)) {</span>
+<span class="nc" id="L43">            app.fill(134, 197, 218);</span>
+        }
+<span class="pc bpc" id="L45" title="2 of 4 branches missed.">        if (this.inputColor.equals(&quot;lightGreen1&quot;) || this.inputColor.equals(&quot;lightGreen2&quot;)) {</span>
+<span class="nc" id="L46">            app.fill(75, 200, 107);</span>
+        }
+<span class="pc bpc" id="L48" title="2 of 4 branches missed.">        if (this.inputColor.equals(&quot;red1&quot;) || this.inputColor.equals(&quot;red2&quot;)) {</span>
+<span class="nc" id="L49">            app.fill(255, 114, 111);</span>
+        }
+<span class="pc bpc" id="L51" title="2 of 4 branches missed.">        if (this.inputColor.equals(&quot;yellow1&quot;) || this.inputColor.equals(&quot;yellow2&quot;)) {</span>
+<span class="nc" id="L52">            app.fill(238, 255, 168);</span>
+        }
+<span class="pc bpc" id="L54" title="2 of 4 branches missed.">        if (this.inputColor.equals(&quot;DarkRed1&quot;) || this.inputColor.equals(&quot;DarkRed2&quot;)) {</span>
+<span class="nc" id="L55">            app.fill(139, 0, 0);</span>
+        }
+<span class="fc" id="L57">        app.rect(this.x, this.y, width, height);</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * Sets the color of the tile.
+     *
+     * @param newColor the new color of the tile
+     */
+    public void setTileColor(String newColor) {
+<span class="fc" id="L66">        this.inputColor = newColor;</span>
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * Retrieves the color of the tile.
+     *
+     * @return the color of the tile
+     */
+    public String getTileColor() {
+<span class="fc" id="L75">        return this.inputColor;</span>
+    }
+
+    /**
+     * Retrieves the x-coordinate of the tile in the grid.
+     *
+     * @return the x-coordinate of the tile
+     */
+    public int getTileX() {
+<span class="fc" id="L84">        return this.x / 48;</span>
+    }
+
+    /**
+     * Retrieves the y-coordinate of the tile in the grid.
+     *
+     * @return the y-coordinate of the tile
+     */
+    public int getTileY() {
+<span class="fc" id="L93">        return this.y / 48;</span>
+    }
+}
+
+// Chess Piece class -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+ * Chess Piece class
+ */
+class chessPiece{
+    protected int x;
+    protected int y;
+    protected PImage image;
+    protected String color;
+    protected double value;
+    protected boolean moved;
+
+    /**
+     * Constructor for the chessPiece class.
+     *
+     * @param x      x-coordinate of the piece
+     * @param y      y-coordinate of the piece
+     * @param image  image of the piece
+     * @param color  color of the piece
+     * @param value  value of the piece
+     */
+<span class="fc" id="L118">    public chessPiece(int x, int y, PImage image, String color, double value) {</span>
+<span class="fc" id="L119">        this.image = image;</span>
+<span class="fc" id="L120">        this.color = color;</span>
+<span class="fc" id="L121">        this.image.resize(48, 48);</span>
+<span class="fc" id="L122">        this.value = value;</span>
+<span class="fc" id="L123">        this.x = x*48;</span>
+<span class="fc" id="L124">        this.y = y*48;</span>
+<span class="fc" id="L125">        this.moved = false;</span>
+<span class="fc" id="L126">    }</span>
+
+    /**
+     * Moves the chess piece towards the selected tile.
+     *
+     * @param selectedTile the tile the piece is moving towards
+     */
+    public void tick(chessTile selectedTile) {
+<span class="nc" id="L134">        int x = selectedTile.getTileX();</span>
+<span class="nc" id="L135">        int y = selectedTile.getTileY();</span>
+<span class="nc" id="L136">        int dx = x*48;</span>
+<span class="nc" id="L137">        int dy = y*48;</span>
+<span class="nc" id="L138">        int speed = App.json.getInt(&quot;piece_movement_speed&quot;);</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        for (int i = 0; i &lt; speed;i++){</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (App.boardArray[App.savedTileY][App.savedTileX].getPiece() != null){</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">                if (App.selectedPiece.getPieceColor().equals(&quot;white&quot;)){</span>
+<span class="nc" id="L142">                   App.whiteScore +=  App.boardArray[App.savedTileY][App.savedTileX].getPiece().getPieceValue();</span>
+                }
+                else {
+<span class="nc" id="L145">                    App.blackScore +=  App.boardArray[App.savedTileY][App.savedTileX].getPiece().getPieceValue();</span>
+                }
+<span class="nc" id="L147">                App.boardArray[App.savedTileY][App.savedTileX].setPiece(null);;</span>
+            }
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this.x &lt; dx){</span>
+<span class="nc" id="L150">                this.x ++;</span>
+            }
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (this.y &lt; dy){</span>
+<span class="nc" id="L153">                this.y ++;</span>
+            }
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (this.x &gt; dx){</span>
+<span class="nc" id="L156">                this.x --;</span>
+            }
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this.y &gt; dy){</span>
+<span class="nc" id="L159">                this.y --;</span>
+            }
+        }
+<span class="nc bnc" id="L162" title="All 4 branches missed.">        if (this.x == dx &amp;&amp; this.y == dy){</span>
+<span class="nc" id="L163">            App.boardArray[App.savedPieceY][App.savedPieceX].setPiece(null);</span>
+<span class="nc" id="L164">            App.boardArray[y][x].setPiece(App.selectedPiece);</span>
+<span class="nc" id="L165">            TileColour.removeTrail();</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (App.boardArray[y][x].getTile().getTileColor().equals(&quot;white&quot;)){</span>
+<span class="nc" id="L167">                App.boardArray[y][x].getTile().setTileColor(&quot;yellow1&quot;);</span>
+            }
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            else if (App.boardArray[y][x].getTile().getTileColor().equals(&quot;green&quot;)){</span>
+<span class="nc" id="L170">                App.boardArray[y][x].getTile().setTileColor(&quot;yellow2&quot;);</span>
+            }
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (App.boardArray[App.savedPieceY][App.savedPieceX].getTile().getTileColor().equals(&quot;white&quot;)){</span>
+<span class="nc" id="L173">                App.boardArray[App.savedPieceY][App.savedPieceX].getTile().setTileColor(&quot;yellow1&quot;);</span>
+            }
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            else if (App.boardArray[App.savedPieceY][App.savedPieceX].getTile().getTileColor().equals(&quot;green&quot;)){</span>
+<span class="nc" id="L176">                App.boardArray[App.savedPieceY][App.savedPieceX].getTile().setTileColor(&quot;yellow2&quot;);</span>
+            }
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            if (App.selectedPiece.getPieceColor().equals(&quot;white&quot;)){</span>
+<span class="nc" id="L179">                App.whiteTotalSeconds = App.whiteTotalSeconds + App.whiteTimeBack;</span>
+            }
+            else {
+<span class="nc" id="L182">                App.blackTotalSeconds = App.blackTotalSeconds + App.blackTimeBack;</span>
+            }
+<span class="nc" id="L184">            App.move = false;</span>
+        }
+<span class="nc" id="L186">    }</span>
+
+    /**
+     * Draws the chess piece on the PApplet canvas.
+     *
+     * @param app the PApplet canvas
+     */
+    public void draw(PApplet app) {
+<span class="fc" id="L194">        app.image(this.image, this.x, this.y);</span>
+<span class="fc" id="L195">    }</span>
+
+    /**
+     * Returns the color of the chess piece.
+     *
+     * @return the color of the chess piece
+     */
+    public String getPieceColor() {
+<span class="fc" id="L203">        return this.color;</span>
+    }
+
+    /**
+     * Returns the value of the chess piece.
+     *
+     * @return the value of the chess piece
+     */
+    public double getPieceValue() {
+<span class="fc" id="L212">        return this.value;</span>
+    }
+
+    /**
+     * Returns the x-coordinate of the chess piece.
+     *
+     * @return the x-coordinate of the chess piece
+     */
+    public int getPieceX() {
+<span class="fc" id="L221">        return this.x / 48;</span>
+    }
+
+    /**
+     * Returns the y-coordinate of the chess piece.
+     *
+     * @return the y-coordinate of the chess piece
+     */
+    public int getPieceY() {
+<span class="fc" id="L230">        return this.y / 48;</span>
+    }
+
+    /**
+     * Retrieves the valid moves for the chess piece at the given position.
+     *
+     * @param x          the x-coordinate of the chess piece
+     * @param y          the y-coordinate of the chess piece
+     * @param boardArray the 2D array representing the chess board
+     * @return the list of valid moves for the chess piece
+     */
+    public ArrayList&lt;chessTile&gt; getMoves(int x, int y, Tuple&lt;chessPiece, chessTile&gt;[][] boardArray){
+<span class="nc" id="L242">        return null;</span>
+    }
+}
+
+// Tupe class --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+ * Tuple class
+ */
+class Tuple&lt;Piece, Tile&gt; {
+    private Piece first;
+    private Tile second;
+
+    /**
+     * Constructor for the Tuple class.
+     *
+     * @param first  first element in the tuple
+     * @param second second element in the tuple
+     */
+<span class="fc" id="L260">    public Tuple(Piece first, Tile second) {</span>
+<span class="fc" id="L261">        this.first = first;</span>
+<span class="fc" id="L262">        this.second = second;</span>
+<span class="fc" id="L263">    }</span>
+
+    /**
+     * Returns the first element of the tuple.
+     *
+     * @return the first element of the tuple
+     */
+    public Piece getPiece() {
+<span class="fc" id="L271">        return first;</span>
+    }
+
+    /**
+     * Returns the second element of the tuple.
+     *
+     * @return the second element of the tuple
+     */
+    public Tile getTile() {
+<span class="fc" id="L280">        return second;</span>
+    }
+
+    /**
+     * Sets the first element of the tuple.
+     *
+     * @param first the first element to set
+     */
+    public void setPiece(Piece first) {
+<span class="fc" id="L289">        this.first = first;</span>
+<span class="fc" id="L290">    }</span>
+
+    /**
+     * Sets the second element of the tuple.
+     *
+     * @param second the second element to set
+     */
+    public void setTile(Tile second) {
+<span class="fc" id="L298">        this.second = second;</span>
+<span class="fc" id="L299">    }</span>
+}
+
+// Board Array class -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+ * Board Array class
+ */
+
+public class BoardArray {
+<span class="fc" id="L308">    @SuppressWarnings(&quot;unchecked&quot;)</span>
+    private Tuple&lt;chessPiece, chessTile&gt;[][] BoardArray = new Tuple[14][14];
+
+    /**
+     * Constructor for the BoardArray class.
+     */
+<span class="fc" id="L314">    public BoardArray() {</span>
+        String currentColor;
+<span class="fc bfc" id="L316" title="All 2 branches covered.">        for (int i = 0; i &lt; 14; i++) {</span>
+<span class="fc bfc" id="L317" title="All 2 branches covered.">            for (int j = 0; j &lt; 14; j++) {</span>
+<span class="fc bfc" id="L318" title="All 2 branches covered.">                if ((i + j) % 2 == 0) {</span>
+<span class="fc" id="L319">                    currentColor = &quot;white&quot;;</span>
+                } else {
+<span class="fc" id="L321">                    currentColor = &quot;green&quot;;</span>
+                }
+<span class="fc" id="L323">                chessPiece piece = null;</span>
+<span class="fc" id="L324">                chessTile tile = new chessTile(j * 48, i * 48, currentColor);</span>
+<span class="fc" id="L325">                Tuple&lt;chessPiece, chessTile&gt; tuple = new Tuple&lt;&gt;(piece, tile);</span>
+<span class="fc" id="L326">                BoardArray[i][j] = tuple;</span>
+            }
+        }
+<span class="fc" id="L329">    }</span>
+
+     /**
+     * Draws the tiles on the given PApplet instance.
+     *
+     * @param app PApplet instance on which to draw the tiles
+     */
+    public void DrawTiles(PApplet app) {
+<span class="nc bnc" id="L337" title="All 2 branches missed.">        for (int i = 0; i &lt; 14; i++) {</span>
+<span class="nc bnc" id="L338" title="All 2 branches missed.">            for (int j = 0; j &lt; 14; j++) {</span>
+<span class="nc" id="L339">                BoardArray[i][j].getTile().draw(app);</span>
+            }
+        }
+<span class="nc" id="L342">    }</span>
+
+    /**
+     * Draws the pieces on the given PApplet instance.
+     *
+     * @param app PApplet instance on which to draw the pieces
+     */
+    public void DrawPieces(PApplet app) {
+<span class="nc" id="L350">        App.whiteAttackTiles = new ArrayList&lt;chessTile&gt;();</span>
+<span class="nc" id="L351">        App.blackAttackTiles = new ArrayList&lt;chessTile&gt;();</span>
+<span class="nc bnc" id="L352" title="All 2 branches missed.">        for (int i = 0; i &lt; 14; i++) {</span>
+<span class="nc bnc" id="L353" title="All 2 branches missed.">            for (int j = 0; j &lt; 14; j++) {</span>
+<span class="nc bnc" id="L354" title="All 2 branches missed.">                if (BoardArray[i][j].getPiece() != null) {</span>
+<span class="nc bnc" id="L355" title="All 2 branches missed.">                    if (BoardArray[i][j].getPiece().getPieceColor().equals(&quot;white&quot;)){</span>
+<span class="nc" id="L356">                        App.whiteAttackTiles.addAll(BoardArray[i][j].getPiece().getMoves(j, i, App.boardArray));</span>
+                    }
+<span class="nc bnc" id="L358" title="All 2 branches missed.">                    if (BoardArray[i][j].getPiece().getPieceColor().equals(&quot;black&quot;)){</span>
+                        
+<span class="nc" id="L360">                        App.blackAttackTiles.addAll(BoardArray[i][j].getPiece().getMoves(j, i, App.boardArray));</span>
+                    }
+<span class="nc" id="L362">                    BoardArray[i][j].getPiece().draw(app);</span>
+                }
+            }
+        }
+<span class="nc" id="L366">    }</span>
+
+    /**
+     * Returns the 2D array representing the board array.
+     *
+     * @return the board array
+     */
+    public  Tuple&lt;chessPiece, chessTile&gt;[][] getBoardArray(){
+<span class="fc" id="L374">        return this.BoardArray;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

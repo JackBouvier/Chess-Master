@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>king.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Chess Master</a> &gt; <a href="index.source.html" class="el_package">XXLChess</a> &gt; <span class="el_source">king.java</span></div><h1>king.java</h1><pre class="source lang-java linenums">package XXLChess;
+import processing.core.PImage;
+import java.util.ArrayList;
+
+/**
+ * The king class represents a king chess piece in the game of chess.
+ * It extends the chessPiece class and provides king-specific movement logic.
+ */
+public class king extends chessPiece{
+    public static chessPiece whiteKing;
+    public static chessPiece blackKing;
+
+    /**
+     * Constructor for the king class.
+     *
+     * @param x     The x-coordinate of the king on the board.
+     * @param y     The y-coordinate of the king on the board.
+     * @param image The image of the king.
+     * @param color The color of the king (either &quot;white&quot; or &quot;black&quot;).
+     */
+    public king(int x, int y, PImage image, String color){
+<span class="fc" id="L22">        super(x, y, image, color, 1000);</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">        if (color.equals(&quot;white&quot;)){</span>
+<span class="fc" id="L24">            whiteKing = this;</span>
+        }
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        else if (color.equals(&quot;black&quot;)){</span>
+<span class="nc" id="L27">            blackKing = this;</span>
+        }
+<span class="fc" id="L29">    }</span>
+    
+    /**
+     * Gets the valid moves for the king piece based on its position on the board
+     * without checking if the king is in check.
+     *
+     * @param x     The x-coordinate of the king on the board.
+     * @param y     The y-coordinate of the king on the board.
+     * @param Array The current state of the chess board.
+     * @return An ArrayList of valid chessTile objects that the king can move to without checking for check.
+     */
+    public ArrayList&lt;chessTile&gt; getMovesWithoutCheckingKing(int x, int y, Tuple&lt;chessPiece, chessTile&gt;[][] Array) {
+<span class="fc" id="L41">        ArrayList&lt;chessTile&gt; validMoves = new ArrayList&lt;&gt;();</span>
+        // King movement rules
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (int dy = -1; dy &lt;= 1; dy++) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            for (int dx = -1; dx &lt;= 1; dx++) {</span>
+                // Skip the current position
+<span class="fc bfc" id="L46" title="All 4 branches covered.">                if (dx == 0 &amp;&amp; dy == 0) {</span>
+<span class="fc" id="L47">                    continue;</span>
+                }
+
+<span class="fc" id="L50">                int newX = x + dx;</span>
+<span class="fc" id="L51">                int newY = y + dy;</span>
+
+<span class="pc bpc" id="L53" title="4 of 8 branches missed.">                if (newX &gt;= 0 &amp;&amp; newX &lt; 14 &amp;&amp; newY &gt;= 0 &amp;&amp; newY &lt; 14) {</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">                    if (Array[newY][newX].getPiece() == null ||</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                        !Array[newY][newX].getPiece().getPieceColor().equals(this.color)) {</span>
+<span class="fc" id="L56">                        validMoves.add(Array[newY][newX].getTile());</span>
+                    }
+                }
+            }
+        }
+<span class="fc" id="L61">        return validMoves;</span>
+    }
+
+    /**
+     * Gets the valid moves for the king piece based on its position on the board,
+     * taking into account whether the king is in check.
+     *
+     * @param x     The x-coordinate of the king on the board.
+     * @param y     The y-coordinate of the king on the board.
+     * @param Array The current state of the chess board.
+     * @return An ArrayList of valid chessTile objects that the king can move to.
+     */
+    public ArrayList&lt;chessTile&gt; getMoves(int x, int y, Tuple&lt;chessPiece, chessTile&gt;[][] Array) {
+<span class="nc" id="L74">        ArrayList&lt;chessTile&gt; validMoves = getMovesWithoutCheckingKing(x, y, Array);</span>
+        @SuppressWarnings(&quot;unchecked&quot;)
+<span class="nc" id="L76">        Tuple&lt;chessPiece, chessTile&gt;[][] testArray = new Tuple[14][14];</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        for (int i = 0; i &lt; 14; i++) {</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            for (int j = 0; j &lt; 14; j++) {</span>
+<span class="nc" id="L79">                testArray[i][j] = new Tuple&lt;&gt;(App.boardArray[i][j].getPiece(), App.boardArray[i][j].getTile());</span>
+            }
+        }
+<span class="nc" id="L82">        testArray[y][x] = new Tuple&lt;&gt;(null, App.boardArray[y][x].getTile());</span>
+<span class="nc" id="L83">        ArrayList&lt;chessTile&gt; whiteAttackTiles2 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L84">        ArrayList&lt;chessTile&gt; blackAttackTiles2 = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        for (int i = 0; i &lt; 14; i++) {</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            for (int j = 0; j &lt; 14; j++) {</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">                if (testArray[i][j].getPiece() != null) {</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">                    if (testArray[i][j].getPiece().getPieceColor().equals(&quot;white&quot;)) {</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">                        if (testArray[i][j].getPiece() instanceof king) {</span>
+<span class="nc" id="L90">                            whiteAttackTiles2.addAll(((king) testArray[i][j].getPiece()).getMovesWithoutCheckingKing(j, i, testArray));</span>
+                        } else {
+<span class="nc" id="L92">                            whiteAttackTiles2.addAll(testArray[i][j].getPiece().getMoves(j, i, testArray));</span>
+                        }
+                    }
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                    if (testArray[i][j].getPiece().getPieceColor().equals(&quot;black&quot;)) {</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                        if (testArray[i][j].getPiece() instanceof king) {</span>
+<span class="nc" id="L97">                            blackAttackTiles2.addAll(((king) testArray[i][j].getPiece()).getMovesWithoutCheckingKing(j, i, testArray));</span>
+                        } else {
+<span class="nc" id="L99">                            blackAttackTiles2.addAll(testArray[i][j].getPiece().getMoves(j, i, testArray));</span>
+                        }
+                    }
+                }
+            }
+        }
+        // Castling functionality
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (!moved) {</span>
+            // White king
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (color.equals(&quot;white&quot;)) {</span>
+<span class="nc" id="L109">                chessPiece leftRook = Array[13][0].getPiece();</span>
+<span class="nc" id="L110">                chessPiece rightRook = Array[13][13].getPiece();</span>
+<span class="nc bnc" id="L111" title="All 6 branches missed.">                boolean leftRookNotMoved = leftRook instanceof rook &amp;&amp; leftRook.getPieceColor().equals(&quot;white&quot;) &amp;&amp; !leftRook.moved;</span>
+<span class="nc bnc" id="L112" title="All 6 branches missed.">                boolean rightRookNotMoved = rightRook instanceof rook &amp;&amp; rightRook.getPieceColor().equals(&quot;white&quot;) &amp;&amp; !rightRook.moved;</span>
+
+<span class="nc bnc" id="L114" title="All 14 branches missed.">                if (leftRookNotMoved &amp;&amp; Array[13][1].getPiece() == null &amp;&amp; Array[13][2].getPiece() == null &amp;&amp; Array[13][3].getPiece() == null &amp;&amp; Array[13][4].getPiece() == null &amp;&amp; Array[13][5].getPiece() == null &amp;&amp; Array[13][6].getPiece() == null) {</span>
+<span class="nc bnc" id="L115" title="All 4 branches missed.">                    if (!blackAttackTiles2.contains(App.boardArray[13][5].getTile()) &amp;&amp; !blackAttackTiles2.contains(App.boardArray[13][6].getTile())) {</span>
+<span class="nc" id="L116">                        validMoves.add(Array[13][5].getTile());</span>
+                    }
+                }
+<span class="nc bnc" id="L119" title="All 12 branches missed.">                if (rightRookNotMoved &amp;&amp; Array[13][12].getPiece() == null &amp;&amp; Array[13][11].getPiece() == null &amp;&amp; Array[13][10].getPiece() == null &amp;&amp; Array[13][9].getPiece() == null &amp;&amp; Array[13][8].getPiece() == null) {</span>
+<span class="nc bnc" id="L120" title="All 4 branches missed.">                    if (!blackAttackTiles2.contains(App.boardArray[13][8].getTile()) &amp;&amp; !blackAttackTiles2.contains(App.boardArray[13][9].getTile())) {</span>
+<span class="nc" id="L121">                        validMoves.add(Array[13][9].getTile());</span>
+                    }
+                }
+<span class="nc" id="L124">            }</span>
+            // Black king
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            else if (color.equals(&quot;black&quot;)) {</span>
+<span class="nc" id="L127">                chessPiece leftRook = Array[0][0].getPiece();</span>
+<span class="nc" id="L128">                chessPiece rightRook = Array[0][13].getPiece();</span>
+<span class="nc bnc" id="L129" title="All 6 branches missed.">                boolean leftRookNotMoved = leftRook instanceof rook &amp;&amp; leftRook.getPieceColor().equals(&quot;black&quot;) &amp;&amp; !leftRook.moved;</span>
+<span class="nc bnc" id="L130" title="All 6 branches missed.">                boolean rightRookNotMoved = rightRook instanceof rook &amp;&amp; rightRook.getPieceColor().equals(&quot;black&quot;) &amp;&amp; !rightRook.moved;</span>
+
+<span class="nc bnc" id="L132" title="All 14 branches missed.">                if (leftRookNotMoved &amp;&amp; Array[0][1].getPiece() == null &amp;&amp; Array[0][2].getPiece() == null &amp;&amp; Array[0][3].getPiece() == null &amp;&amp; Array[0][4].getPiece() == null &amp;&amp; Array[0][5].getPiece() == null &amp;&amp; Array[0][6].getPiece() == null) {</span>
+<span class="nc bnc" id="L133" title="All 4 branches missed.">                    if (!whiteAttackTiles2.contains(App.boardArray[0][5].getTile()) &amp;&amp; !whiteAttackTiles2.contains(App.boardArray[0][6].getTile())) {</span>
+<span class="nc" id="L134">                        validMoves.add(Array[0][5].getTile());</span>
+                    }
+                }
+<span class="nc bnc" id="L137" title="All 12 branches missed.">                if (rightRookNotMoved &amp;&amp; Array[0][12].getPiece() == null &amp;&amp; Array[0][11].getPiece() == null &amp;&amp; Array[0][10].getPiece() == null &amp;&amp; Array[0][9].getPiece() == null &amp;&amp; Array[0][8].getPiece() == null) {</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">                    if (!whiteAttackTiles2.contains(App.boardArray[0][8].getTile()) &amp;&amp; !whiteAttackTiles2.contains(App.boardArray[0][9].getTile())) {</span>
+<span class="nc" id="L139">                        validMoves.add(Array[0][9].getTile());</span>
+                    }
+                }
+            }
+        }
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        for (int i = 0; i &lt; validMoves.size(); i++){</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (this.getPieceColor().equals(&quot;white&quot;)){</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">                if (blackAttackTiles2.contains(validMoves.get(i))){</span>
+<span class="nc" id="L147">                    validMoves.remove(i);</span>
+<span class="nc" id="L148">                    i--;</span>
+                }
+            }
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            else if (this.getPieceColor().equals(&quot;black&quot;)){</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">                if (whiteAttackTiles2.contains(validMoves.get(i))){</span>
+<span class="nc" id="L153">                    validMoves.remove(i);</span>
+<span class="nc" id="L154">                    i--;</span>
+                }
+            }
+        }
+<span class="nc" id="L158">        return validMoves;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

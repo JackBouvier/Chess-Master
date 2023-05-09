@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>staleAndCheck.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Chess Master</a> &gt; <a href="index.source.html" class="el_package">XXLChess</a> &gt; <span class="el_source">staleAndCheck.java</span></div><h1>staleAndCheck.java</h1><pre class="source lang-java linenums">package XXLChess;
+import java.util.ArrayList;
+
+/**
+ * staleAndCheck class is responsible for checking check, stalemate, and checkmate conditions
+ * in the game of chess.
+ */
+<span class="nc" id="L8">public class staleAndCheck {</span>
+    
+     /**
+     * Checks if there is a check, stalemate, or checkmate situation on the board.
+     * Updates the game state accordingly.
+     */
+    public static void checkCheck(){
+        // Get valid pieces
+<span class="nc" id="L16">        ArrayList&lt;chessPiece&gt; validPieces = new ArrayList&lt;chessPiece&gt;();</span>
+<span class="nc bnc" id="L17" title="All 2 branches missed.">        for(int i = 0; i &lt; 14; i++){</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">            for(int j = 0; j &lt; 14; j++){</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">                if(App.boardArray[i][j].getPiece() != null){</span>
+<span class="nc" id="L20">                    ArrayList&lt;chessTile&gt; validMovesForPiece = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L21" title="All 4 branches missed.">                    if(App.boardArray[i][j].getPiece().getPieceColor().equals(&quot;white&quot;) &amp;&amp; App.isWhiteTurn){</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">                        if(validateMoves.validate(App.boardArray[i][j].getPiece(), validMovesForPiece).size() != 0){</span>
+<span class="nc" id="L23">                            validPieces.add(App.boardArray[i][j].getPiece());</span>
+                        }
+                    }
+<span class="nc bnc" id="L26" title="All 4 branches missed.">                    else if(App.boardArray[i][j].getPiece().getPieceColor().equals(&quot;black&quot;) &amp;&amp; !App.isWhiteTurn){</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">                        if(validateMoves.validate(App.boardArray[i][j].getPiece(), validMovesForPiece).size() != 0){</span>
+<span class="nc" id="L28">                            validPieces.add(App.boardArray[i][j].getPiece());</span>
+                        }
+                    }
+                }
+            }
+        }
+        try{
+             // Check for check
+<span class="nc" id="L36">            boolean checkCheck = false;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (App.blackAttackTiles.contains(App.boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile())) {</span>
+<span class="nc" id="L38">                checkCheck = true;</span>
+            }
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (App.whiteAttackTiles.contains(App.boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile())) {</span>
+<span class="nc" id="L41">                checkCheck = true;</span>
+            }
+             // Check for stalemate
+<span class="nc bnc" id="L44" title="All 4 branches missed.">            if (validPieces.size() == 0 &amp;&amp; checkCheck == false){</span>
+<span class="nc" id="L45">                App.stalemate = true;</span>
+            }
+            // Check for checkmate
+<span class="nc bnc" id="L48" title="All 6 branches missed.">            if (validPieces.size() == 0 &amp;&amp; checkCheck == true &amp;&amp; App.isWhiteTurn == true){</span>
+<span class="nc" id="L49">                App.blackWin = true;</span>
+            }
+<span class="nc bnc" id="L51" title="All 6 branches missed.">            else if (validPieces.size() == 0 &amp;&amp; checkCheck == true &amp;&amp; App.isWhiteTurn == false){</span>
+<span class="nc" id="L52">                App.whiteWin = true;</span>
+            }
+        }
+<span class="nc" id="L55">        catch(Exception e){}</span>
+<span class="nc" id="L56">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
