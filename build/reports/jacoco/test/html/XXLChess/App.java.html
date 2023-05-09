@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import processing.core.PFont;
 
-<span class="fc" id="L9">public class App extends PApplet {</span>
+<span class="nc" id="L9">public class App extends PApplet {</span>
     public static final int SPRITESIZE = 480;
     public static final int CELLSIZE = 48;
     public static final int SIDEBAR = 120;
@@ -75,126 +75,134 @@ import processing.core.PFont;
 <span class="nc" id="L75">        boardSetup.initialPieces(pieceInput, boardArray);</span>
 <span class="nc" id="L76">    }</span>
 
+    public static void initializeForTesting() {
+        // Initialize the necessary variables for testing
+<span class="nc" id="L80">        Board_Array = new BoardArray();</span>
+<span class="nc" id="L81">        boardArray = Board_Array.getBoardArray(); </span>
+<span class="nc" id="L82">        timerAndScore = new TimerAndScore(null);</span>
+<span class="nc" id="L83">        boardSetup = new boardSetup(null);</span>
+<span class="nc" id="L84">    }</span>
+
     /**
      * Receive key pressed signal from the keyboard.
     */
     public void keyPressed(){
-<span class="nc bnc" id="L82" title="All 6 branches missed.">        if (whiteWin == true || blackWin == true || stalemate == true){</span>
-<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (key == 'r'){</span>
-<span class="nc" id="L84">                whiteTotalSeconds = json.getJSONObject(&quot;time_controls&quot;).getJSONObject(&quot;player&quot;).getInt(&quot;seconds&quot;);</span>
-<span class="nc" id="L85">                blackTotalSeconds = json.getJSONObject(&quot;time_controls&quot;).getJSONObject(&quot;cpu&quot;).getInt(&quot;seconds&quot;);</span>
-<span class="nc" id="L86">                isWhiteTurn = true;</span>
-<span class="nc" id="L87">                Ai = false;</span>
-<span class="nc" id="L88">                firstClick = true;</span>
-<span class="nc" id="L89">                move = false;</span>
-<span class="nc" id="L90">                whiteScore = 0;</span>
-<span class="nc" id="L91">                blackScore = 0;</span>
-<span class="nc" id="L92">                whiteWin = false;</span>
-<span class="nc" id="L93">                blackWin = false;</span>
-<span class="nc" id="L94">                stalemate = false;</span>
-<span class="nc" id="L95">                whiteTimeRemaining = &quot;&quot;;</span>
-<span class="nc" id="L96">                blackTimeRemaining = &quot;&quot;;</span>
-<span class="nc" id="L97">                whiteTickCount = 0;</span>
-<span class="nc" id="L98">                blackTickCount = 0;</span>
-<span class="nc" id="L99">                inCheck = false;</span>
-<span class="nc" id="L100">                titleScreen = true;</span>
-<span class="nc" id="L101">                setup();</span>
+<span class="nc bnc" id="L90" title="All 6 branches missed.">        if (whiteWin == true || blackWin == true || stalemate == true){</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (key == 'r'){</span>
+<span class="nc" id="L92">                whiteTotalSeconds = json.getJSONObject(&quot;time_controls&quot;).getJSONObject(&quot;player&quot;).getInt(&quot;seconds&quot;);</span>
+<span class="nc" id="L93">                blackTotalSeconds = json.getJSONObject(&quot;time_controls&quot;).getJSONObject(&quot;cpu&quot;).getInt(&quot;seconds&quot;);</span>
+<span class="nc" id="L94">                isWhiteTurn = true;</span>
+<span class="nc" id="L95">                Ai = false;</span>
+<span class="nc" id="L96">                firstClick = true;</span>
+<span class="nc" id="L97">                move = false;</span>
+<span class="nc" id="L98">                whiteScore = 0;</span>
+<span class="nc" id="L99">                blackScore = 0;</span>
+<span class="nc" id="L100">                whiteWin = false;</span>
+<span class="nc" id="L101">                blackWin = false;</span>
+<span class="nc" id="L102">                stalemate = false;</span>
+<span class="nc" id="L103">                whiteTimeRemaining = &quot;&quot;;</span>
+<span class="nc" id="L104">                blackTimeRemaining = &quot;&quot;;</span>
+<span class="nc" id="L105">                whiteTickCount = 0;</span>
+<span class="nc" id="L106">                blackTickCount = 0;</span>
+<span class="nc" id="L107">                inCheck = false;</span>
+<span class="nc" id="L108">                titleScreen = true;</span>
+<span class="nc" id="L109">                setup();</span>
             }
         }
-<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (titleScreen == true){</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (key == 'p'){</span>
-<span class="nc" id="L106">                setup();</span>
-<span class="nc" id="L107">                titleScreen = false;</span>
-<span class="nc" id="L108">                Ai = false;</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        if (titleScreen == true){</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (key == 'p'){</span>
+<span class="nc" id="L114">                setup();</span>
+<span class="nc" id="L115">                titleScreen = false;</span>
+<span class="nc" id="L116">                Ai = false;</span>
             }
-<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (key == 'c'){</span>
-<span class="nc" id="L111">                setup();</span>
-<span class="nc" id="L112">                titleScreen = false;</span>
-<span class="nc" id="L113">                Ai = true;</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (key == 'c'){</span>
+<span class="nc" id="L119">                setup();</span>
+<span class="nc" id="L120">                titleScreen = false;</span>
+<span class="nc" id="L121">                Ai = true;</span>
             }
         }
-<span class="nc" id="L116">    }</span>
+<span class="nc" id="L124">    }</span>
     
     /**
      * Receive mouse clicks.
     */
     @Override
     public void mouseClicked(MouseEvent e) {
-<span class="nc" id="L123">        int selectedX = (int) (mouseX / 48);</span>
-<span class="nc" id="L124">        int selectedY = (int) (mouseY / 48);</span>
-<span class="nc" id="L125">        tempPiece = boardArray[selectedY][selectedX].getPiece();</span>
-<span class="nc" id="L126">        tempTile = boardArray[selectedY][selectedX].getTile();   </span>
-<span class="nc" id="L127">        inCheck = false;</span>
-<span class="nc bnc" id="L128" title="All 6 branches missed.">        if (move == false &amp;&amp; (isWhiteTurn || Ai == false)) {  </span>
-<span class="nc bnc" id="L129" title="All 6 branches missed.">            if (tempPiece != null &amp;&amp; tempPiece.getPieceColor().equals(&quot;white&quot;) &amp;&amp; isWhiteTurn == true) {</span>
-<span class="nc" id="L130">                validMoves.clear();</span>
-<span class="nc bnc" id="L131" title="All 2 branches missed.">                if (blackAttackTiles.contains(boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile())) {</span>
-<span class="nc" id="L132">                    inCheck = true;</span>
-<span class="nc bnc" id="L133" title="All 2 branches missed.">                    if (boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile().getTileColor().equals(&quot;white&quot;)){</span>
-<span class="nc" id="L134">                        boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile().setTileColor(&quot;DarkRed1&quot;);</span>
+<span class="nc" id="L131">        int selectedX = (int) (mouseX / 48);</span>
+<span class="nc" id="L132">        int selectedY = (int) (mouseY / 48);</span>
+<span class="nc" id="L133">        tempPiece = boardArray[selectedY][selectedX].getPiece();</span>
+<span class="nc" id="L134">        tempTile = boardArray[selectedY][selectedX].getTile();   </span>
+<span class="nc" id="L135">        inCheck = false;</span>
+<span class="nc bnc" id="L136" title="All 6 branches missed.">        if (move == false &amp;&amp; (isWhiteTurn || Ai == false)) {  </span>
+<span class="nc bnc" id="L137" title="All 6 branches missed.">            if (tempPiece != null &amp;&amp; tempPiece.getPieceColor().equals(&quot;white&quot;) &amp;&amp; isWhiteTurn == true) {</span>
+<span class="nc" id="L138">                validMoves.clear();</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">                if (blackAttackTiles.contains(boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile())) {</span>
+<span class="nc" id="L140">                    inCheck = true;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">                    if (boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile().getTileColor().equals(&quot;white&quot;)){</span>
+<span class="nc" id="L142">                        boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile().setTileColor(&quot;DarkRed1&quot;);</span>
                     }
-<span class="nc bnc" id="L136" title="All 2 branches missed.">                    if (boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile().getTileColor().equals(&quot;green&quot;)){</span>
-<span class="nc" id="L137">                        boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile().setTileColor(&quot;DarkRed2&quot;);</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">                    if (boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile().getTileColor().equals(&quot;green&quot;)){</span>
+<span class="nc" id="L145">                        boardArray[king.whiteKing.getPieceY()][king.whiteKing.getPieceX()].getTile().setTileColor(&quot;DarkRed2&quot;);</span>
                     }
                 }
             }
-<span class="nc bnc" id="L141" title="All 6 branches missed.">            if (tempPiece != null &amp;&amp; tempPiece.getPieceColor().equals(&quot;black&quot;) &amp;&amp; isWhiteTurn == false) {</span>
-<span class="nc" id="L142">                validMoves.clear();</span>
-<span class="nc bnc" id="L143" title="All 2 branches missed.">                if (whiteAttackTiles.contains(boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile())) {</span>
-<span class="nc" id="L144">                    inCheck = true;</span>
-<span class="nc bnc" id="L145" title="All 2 branches missed.">                    if (boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile().getTileColor().equals(&quot;white&quot;)){</span>
-<span class="nc" id="L146">                        boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile().setTileColor(&quot;DarkRed1&quot;);</span>
+<span class="nc bnc" id="L149" title="All 6 branches missed.">            if (tempPiece != null &amp;&amp; tempPiece.getPieceColor().equals(&quot;black&quot;) &amp;&amp; isWhiteTurn == false) {</span>
+<span class="nc" id="L150">                validMoves.clear();</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">                if (whiteAttackTiles.contains(boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile())) {</span>
+<span class="nc" id="L152">                    inCheck = true;</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">                    if (boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile().getTileColor().equals(&quot;white&quot;)){</span>
+<span class="nc" id="L154">                        boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile().setTileColor(&quot;DarkRed1&quot;);</span>
                     }
-<span class="nc bnc" id="L148" title="All 2 branches missed.">                    if (boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile().getTileColor().equals(&quot;green&quot;)){</span>
-<span class="nc" id="L149">                        boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile().setTileColor(&quot;DarkRed2&quot;);</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">                    if (boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile().getTileColor().equals(&quot;green&quot;)){</span>
+<span class="nc" id="L157">                        boardArray[king.blackKing.getPieceY()][king.blackKing.getPieceX()].getTile().setTileColor(&quot;DarkRed2&quot;);</span>
                     }
                 }
             } 
-<span class="nc" id="L153">            validMoves = validateMoves.validate(tempPiece, validMoves);</span>
-<span class="nc bnc" id="L154" title="All 4 branches missed.">            if (firstClick &amp;&amp; tempPiece != null){</span>
-<span class="nc bnc" id="L155" title="All 4 branches missed.">                if (tempPiece.getPieceColor().equals(&quot;white&quot;) &amp;&amp; isWhiteTurn == true){</span>
-<span class="nc" id="L156">                    selectedPiece = tempPiece;                   </span>
-<span class="nc" id="L157">                    TileColour.showMoves(validMoves, selectedPiece);</span>
-<span class="nc" id="L158">                    firstClick = false;</span>
+<span class="nc" id="L161">            validMoves = validateMoves.validate(tempPiece, validMoves);</span>
+<span class="nc bnc" id="L162" title="All 4 branches missed.">            if (firstClick &amp;&amp; tempPiece != null){</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">                if (tempPiece.getPieceColor().equals(&quot;white&quot;) &amp;&amp; isWhiteTurn == true){</span>
+<span class="nc" id="L164">                    selectedPiece = tempPiece;                   </span>
+<span class="nc" id="L165">                    TileColour.showMoves(validMoves, selectedPiece);</span>
+<span class="nc" id="L166">                    firstClick = false;</span>
                 }
-<span class="nc bnc" id="L160" title="All 4 branches missed.">                if (tempPiece.getPieceColor().equals(&quot;black&quot;) &amp;&amp; isWhiteTurn == false){</span>
-<span class="nc" id="L161">                    selectedPiece = tempPiece;                   </span>
-<span class="nc" id="L162">                    TileColour.showMoves(validMoves, selectedPiece);</span>
-<span class="nc" id="L163">                    firstClick = false;</span>
-                }
-            }
-<span class="nc bnc" id="L166" title="All 6 branches missed.">            else if (tempPiece != null &amp;&amp; !firstClick &amp;&amp; tempPiece.getPieceColor().equals(selectedPiece.getPieceColor())){</span>
-<span class="nc bnc" id="L167" title="All 4 branches missed.">                if (tempPiece.getPieceColor().equals(&quot;white&quot;) &amp;&amp; isWhiteTurn == true){</span>
-<span class="nc" id="L168">                    TileColour.refreshBoard();</span>
-<span class="nc" id="L169">                    selectedPiece = tempPiece;</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">                if (tempPiece.getPieceColor().equals(&quot;black&quot;) &amp;&amp; isWhiteTurn == false){</span>
+<span class="nc" id="L169">                    selectedPiece = tempPiece;                   </span>
 <span class="nc" id="L170">                    TileColour.showMoves(validMoves, selectedPiece);</span>
 <span class="nc" id="L171">                    firstClick = false;</span>
                 }
-<span class="nc bnc" id="L173" title="All 4 branches missed.">                if (tempPiece.getPieceColor().equals(&quot;black&quot;) &amp;&amp; isWhiteTurn == false){</span>
-<span class="nc" id="L174">                    TileColour.refreshBoard();</span>
-<span class="nc" id="L175">                    selectedPiece = tempPiece;</span>
-<span class="nc" id="L176">                    TileColour.showMoves(validMoves, selectedPiece);</span>
-<span class="nc" id="L177">                    firstClick = false;</span>
+            }
+<span class="nc bnc" id="L174" title="All 6 branches missed.">            else if (tempPiece != null &amp;&amp; !firstClick &amp;&amp; tempPiece.getPieceColor().equals(selectedPiece.getPieceColor())){</span>
+<span class="nc bnc" id="L175" title="All 4 branches missed.">                if (tempPiece.getPieceColor().equals(&quot;white&quot;) &amp;&amp; isWhiteTurn == true){</span>
+<span class="nc" id="L176">                    TileColour.refreshBoard(App.boardArray);</span>
+<span class="nc" id="L177">                    selectedPiece = tempPiece;</span>
+<span class="nc" id="L178">                    TileColour.showMoves(validMoves, selectedPiece);</span>
+<span class="nc" id="L179">                    firstClick = false;</span>
+                }
+<span class="nc bnc" id="L181" title="All 4 branches missed.">                if (tempPiece.getPieceColor().equals(&quot;black&quot;) &amp;&amp; isWhiteTurn == false){</span>
+<span class="nc" id="L182">                    TileColour.refreshBoard(App.boardArray);</span>
+<span class="nc" id="L183">                    selectedPiece = tempPiece;</span>
+<span class="nc" id="L184">                    TileColour.showMoves(validMoves, selectedPiece);</span>
+<span class="nc" id="L185">                    firstClick = false;</span>
                 }
             }
-<span class="nc bnc" id="L180" title="All 6 branches missed.">            else if (selectedPiece != null &amp;&amp; !firstClick &amp;&amp; (validMoves.contains(tempTile))) {</span>
-<span class="nc" id="L181">                TileColour.refreshBoard();</span>
-<span class="nc" id="L182">                TileColour.removeCheck();</span>
-<span class="nc" id="L183">                selectedTile = tempTile;</span>
-<span class="nc" id="L184">                savedPieceX = selectedPiece.getPieceX();</span>
-<span class="nc" id="L185">                savedPieceY = selectedPiece.getPieceY();</span>
-<span class="nc" id="L186">                savedTileX = selectedTile.getTileX();</span>
-<span class="nc" id="L187">                savedTileY = selectedTile.getTileY();</span>
-<span class="nc" id="L188">                firstClick = true;</span>
-<span class="nc" id="L189">                move = true;</span>
+<span class="nc bnc" id="L188" title="All 6 branches missed.">            else if (selectedPiece != null &amp;&amp; !firstClick &amp;&amp; (validMoves.contains(tempTile))) {</span>
+<span class="nc" id="L189">                TileColour.refreshBoard(App.boardArray);</span>
+<span class="nc" id="L190">                TileColour.removeCheck(App.boardArray);</span>
+<span class="nc" id="L191">                selectedTile = tempTile;</span>
+<span class="nc" id="L192">                savedPieceX = selectedPiece.getPieceX();</span>
+<span class="nc" id="L193">                savedPieceY = selectedPiece.getPieceY();</span>
+<span class="nc" id="L194">                savedTileX = selectedTile.getTileX();</span>
+<span class="nc" id="L195">                savedTileY = selectedTile.getTileY();</span>
+<span class="nc" id="L196">                firstClick = true;</span>
+<span class="nc" id="L197">                move = true;</span>
             }
             else {
-<span class="nc" id="L192">                TileColour.refreshBoard();</span>
-<span class="nc" id="L193">                validMoves.clear();</span>
-<span class="nc" id="L194">                firstClick = true;</span>
+<span class="nc" id="L200">                TileColour.refreshBoard(App.boardArray);</span>
+<span class="nc" id="L201">                validMoves.clear();</span>
+<span class="nc" id="L202">                firstClick = true;</span>
             }
         }
-<span class="nc" id="L197">    }</span>
+<span class="nc" id="L205">    }</span>
         
     /**
      * Draw all elements in the game by current frame. 
@@ -202,57 +210,57 @@ import processing.core.PFont;
     public void draw() {
 
         // Draw board
-<span class="nc" id="L205">        Board_Array.DrawTiles(this);</span>
-<span class="nc" id="L206">        Board_Array.DrawPieces(this);</span>
+<span class="nc" id="L213">        Board_Array.DrawTiles(this);</span>
+<span class="nc" id="L214">        Board_Array.DrawPieces(this);</span>
 
         // Check for checkmate and stalemate
-<span class="nc" id="L209">        staleAndCheck.checkCheck();</span>
+<span class="nc" id="L217">        staleAndCheck.checkCheck();</span>
 
         // Ai
-<span class="nc bnc" id="L212" title="All 6 branches missed.">        if(whiteWin == false &amp;&amp; blackWin == false &amp;&amp; stalemate == false){</span>
-<span class="nc" id="L213">            AI.Ai();</span>
+<span class="nc bnc" id="L220" title="All 6 branches missed.">        if(whiteWin == false &amp;&amp; blackWin == false &amp;&amp; stalemate == false){</span>
+<span class="nc" id="L221">            AI.Ai();</span>
         }
         
         // Moves
-<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (move){</span>
-<span class="nc bnc" id="L218" title="All 2 branches missed.">            if (selectedPiece.getPieceColor().equals(&quot;white&quot;)){</span>
-<span class="nc" id="L219">                isWhiteTurn = false;</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">        if (move){</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            if (selectedPiece.getPieceColor().equals(&quot;white&quot;)){</span>
+<span class="nc" id="L227">                isWhiteTurn = false;</span>
             }
-<span class="nc bnc" id="L221" title="All 2 branches missed.">            else if (selectedPiece.getPieceColor().equals(&quot;black&quot;)){</span>
-<span class="nc" id="L222">                isWhiteTurn = true;</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            else if (selectedPiece.getPieceColor().equals(&quot;black&quot;)){</span>
+<span class="nc" id="L230">                isWhiteTurn = true;</span>
             }
-<span class="nc" id="L224">            selectedPiece.tick(selectedTile);</span>
+<span class="nc" id="L232">            selectedPiece.tick(selectedTile);</span>
 
             // Special moves
-<span class="nc bnc" id="L227" title="All 6 branches missed.">            if (selectedPiece.getPieceValue() == 1 &amp;&amp; selectedPiece.getPieceColor().equals(&quot;white&quot;) &amp;&amp; selectedPiece.getPieceY() == 6) {</span>
-<span class="nc" id="L228">                boardArray[selectedPiece.getPieceY()][selectedPiece.getPieceX()] = new Tuple&lt;&gt;(new queen(selectedPiece.getPieceX(), selectedPiece.getPieceY(), loadImage(&quot;src/main/resources/XXLChess/w-queen.png&quot;), &quot;white&quot;), boardArray[selectedPiece.getPieceY()][selectedPiece.getPieceX()].getTile());</span>
-<span class="nc bnc" id="L229" title="All 6 branches missed.">            } else if (selectedPiece.getPieceValue() == 1 &amp;&amp; selectedPiece.getPieceColor().equals(&quot;black&quot;) &amp;&amp; selectedPiece.getPieceY() == 7) {</span>
-<span class="nc" id="L230">                boardArray[selectedPiece.getPieceY()][selectedPiece.getPieceX()] = new Tuple&lt;&gt;(new queen(selectedPiece.getPieceX(), selectedPiece.getPieceY(), loadImage(&quot;src/main/resources/XXLChess/b-queen.png&quot;), &quot;black&quot;), boardArray[selectedPiece.getPieceY()][selectedPiece.getPieceX()].getTile());</span>
+<span class="nc bnc" id="L235" title="All 6 branches missed.">            if (selectedPiece.getPieceValue() == 1 &amp;&amp; selectedPiece.getPieceColor().equals(&quot;white&quot;) &amp;&amp; selectedPiece.getPieceY() == 6) {</span>
+<span class="nc" id="L236">                boardArray[selectedPiece.getPieceY()][selectedPiece.getPieceX()] = new Tuple&lt;&gt;(new queen(selectedPiece.getPieceX(), selectedPiece.getPieceY(), loadImage(&quot;src/main/resources/XXLChess/w-queen.png&quot;), &quot;white&quot;), boardArray[selectedPiece.getPieceY()][selectedPiece.getPieceX()].getTile());</span>
+<span class="nc bnc" id="L237" title="All 6 branches missed.">            } else if (selectedPiece.getPieceValue() == 1 &amp;&amp; selectedPiece.getPieceColor().equals(&quot;black&quot;) &amp;&amp; selectedPiece.getPieceY() == 7) {</span>
+<span class="nc" id="L238">                boardArray[selectedPiece.getPieceY()][selectedPiece.getPieceX()] = new Tuple&lt;&gt;(new queen(selectedPiece.getPieceX(), selectedPiece.getPieceY(), loadImage(&quot;src/main/resources/XXLChess/b-queen.png&quot;), &quot;black&quot;), boardArray[selectedPiece.getPieceY()][selectedPiece.getPieceX()].getTile());</span>
             }
 
             // Castling
-<span class="nc bnc" id="L234" title="All 2 branches missed.">            if (selectedPiece.getPieceValue() == 1000)</span>
-<span class="nc" id="L235">                selectedPiece.moved = true;</span>
-<span class="nc bnc" id="L236" title="All 2 branches missed.">            if (selectedPiece.getPieceValue() == 5.25)</span>
-<span class="nc" id="L237">                selectedPiece.moved = true;</span>
-<span class="nc bnc" id="L238" title="All 2 branches missed.">            if (selectedPiece instanceof king) {</span>
-<span class="nc" id="L239">                int deltaX = Math.abs(savedTileX - savedPieceX);</span>
-<span class="nc bnc" id="L240" title="All 2 branches missed.">                if (deltaX == 2) {</span>
-<span class="nc bnc" id="L241" title="All 2 branches missed.">                    if (selectedPiece.getPieceColor().equals(&quot;white&quot;)) {</span>
-<span class="nc bnc" id="L242" title="All 2 branches missed.">                        if (savedTileX == 5) { // Castling with the left rook</span>
-<span class="nc" id="L243">                            boardArray[13][0] = new Tuple&lt;&gt;(null, boardArray[13][0].getTile());</span>
-<span class="nc" id="L244">                            boardArray[13][6] = new Tuple&lt;&gt;(new rook(6, 13, loadImage(&quot;src/main/resources/XXLChess/w-rook.png&quot;), &quot;white&quot;), boardArray[13][6].getTile());</span>
-<span class="nc bnc" id="L245" title="All 2 branches missed.">                        } else if (savedTileX == 9) { // Castling with the right rook</span>
-<span class="nc" id="L246">                            boardArray[13][13] = new Tuple&lt;&gt;(null, boardArray[13][13].getTile());</span>
-<span class="nc" id="L247">                            boardArray[13][8] = new Tuple&lt;&gt;(new rook(8, 13, loadImage(&quot;src/main/resources/XXLChess/w-rook.png&quot;), &quot;white&quot;), boardArray[13][8].getTile());</span>
-                        }
-<span class="nc bnc" id="L249" title="All 2 branches missed.">                    } else if (selectedPiece.getPieceColor().equals(&quot;black&quot;)) {</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">            if (selectedPiece.getPieceValue() == 1000)</span>
+<span class="nc" id="L243">                selectedPiece.moved = true;</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (selectedPiece.getPieceValue() == 5.25)</span>
+<span class="nc" id="L245">                selectedPiece.moved = true;</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (selectedPiece instanceof king) {</span>
+<span class="nc" id="L247">                int deltaX = Math.abs(savedTileX - savedPieceX);</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">                if (deltaX == 2) {</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">                    if (selectedPiece.getPieceColor().equals(&quot;white&quot;)) {</span>
 <span class="nc bnc" id="L250" title="All 2 branches missed.">                        if (savedTileX == 5) { // Castling with the left rook</span>
-<span class="nc" id="L251">                            boardArray[0][0] = new Tuple&lt;&gt;(null, boardArray[0][0].getTile());</span>
-<span class="nc" id="L252">                            boardArray[0][6] = new Tuple&lt;&gt;(new rook(6, 0, loadImage(&quot;src/main/resources/XXLChess/b-rook.png&quot;), &quot;black&quot;), boardArray[0][6].getTile());</span>
+<span class="nc" id="L251">                            boardArray[13][0] = new Tuple&lt;&gt;(null, boardArray[13][0].getTile());</span>
+<span class="nc" id="L252">                            boardArray[13][6] = new Tuple&lt;&gt;(new rook(6, 13, loadImage(&quot;src/main/resources/XXLChess/w-rook.png&quot;), &quot;white&quot;), boardArray[13][6].getTile());</span>
 <span class="nc bnc" id="L253" title="All 2 branches missed.">                        } else if (savedTileX == 9) { // Castling with the right rook</span>
-<span class="nc" id="L254">                            boardArray[0][13] = new Tuple&lt;&gt;(null, boardArray[0][13].getTile());</span>
-<span class="nc" id="L255">                            boardArray[0][8] = new Tuple&lt;&gt;(new rook(8, 0, loadImage(&quot;src/main/resources/XXLChess/b-rook.png&quot;), &quot;black&quot;), boardArray[0][8].getTile());</span>
+<span class="nc" id="L254">                            boardArray[13][13] = new Tuple&lt;&gt;(null, boardArray[13][13].getTile());</span>
+<span class="nc" id="L255">                            boardArray[13][8] = new Tuple&lt;&gt;(new rook(8, 13, loadImage(&quot;src/main/resources/XXLChess/w-rook.png&quot;), &quot;white&quot;), boardArray[13][8].getTile());</span>
+                        }
+<span class="nc bnc" id="L257" title="All 2 branches missed.">                    } else if (selectedPiece.getPieceColor().equals(&quot;black&quot;)) {</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">                        if (savedTileX == 5) { // Castling with the left rook</span>
+<span class="nc" id="L259">                            boardArray[0][0] = new Tuple&lt;&gt;(null, boardArray[0][0].getTile());</span>
+<span class="nc" id="L260">                            boardArray[0][6] = new Tuple&lt;&gt;(new rook(6, 0, loadImage(&quot;src/main/resources/XXLChess/b-rook.png&quot;), &quot;black&quot;), boardArray[0][6].getTile());</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">                        } else if (savedTileX == 9) { // Castling with the right rook</span>
+<span class="nc" id="L262">                            boardArray[0][13] = new Tuple&lt;&gt;(null, boardArray[0][13].getTile());</span>
+<span class="nc" id="L263">                            boardArray[0][8] = new Tuple&lt;&gt;(new rook(8, 0, loadImage(&quot;src/main/resources/XXLChess/b-rook.png&quot;), &quot;black&quot;), boardArray[0][8].getTile());</span>
                         }
                     }
                 }
@@ -260,63 +268,63 @@ import processing.core.PFont;
         }
 
         // Draw timer and score
-<span class="nc" id="L263">        timerAndScore.drawTimerAndScore();</span>
+<span class="nc" id="L271">        timerAndScore.drawTimerAndScore();</span>
 
         // Title screen
-<span class="nc bnc" id="L266" title="All 2 branches missed.">        if (titleScreen == true){</span>
-<span class="nc" id="L267">            fill(192, 192, 192);</span>
-<span class="nc" id="L268">            rect(-1, -1, HEIGHT*2, WIDTH*2);</span>
-<span class="nc" id="L269">            fill(2, 88, 57);</span>
-<span class="nc" id="L270">            PFont myFont = createFont(&quot;Arial&quot;, 40);</span>
-<span class="nc" id="L271">            textFont(myFont);</span>
-<span class="nc" id="L272">            text(&quot;Welcome to XXL Chess !!!&quot;, 3*52+20, 5*44);</span>
-<span class="nc" id="L273">            text(&quot;Click 'p' to play&quot;, 3*52+20, 5*48+50);</span>
-<span class="nc" id="L274">            text(&quot;against a person&quot;, 3*52+20, 5*52+70);</span>
-<span class="nc" id="L275">            text(&quot;Click 'c' to play against&quot;, 3*52+20, 7*48+90);</span>
-<span class="nc" id="L276">            text(&quot;a basic AI&quot;, 3*52+20, 7*52+100);</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">        if (titleScreen == true){</span>
+<span class="nc" id="L275">            fill(192, 192, 192);</span>
+<span class="nc" id="L276">            rect(-1, -1, HEIGHT*2, WIDTH*2);</span>
+<span class="nc" id="L277">            fill(2, 88, 57);</span>
+<span class="nc" id="L278">            PFont myFont = createFont(&quot;Arial&quot;, 40);</span>
+<span class="nc" id="L279">            textFont(myFont);</span>
+<span class="nc" id="L280">            text(&quot;Welcome to XXL Chess !!!&quot;, 3*52+20, 5*44);</span>
+<span class="nc" id="L281">            text(&quot;Click 'p' to play&quot;, 3*52+20, 5*48+50);</span>
+<span class="nc" id="L282">            text(&quot;against a person&quot;, 3*52+20, 5*52+70);</span>
+<span class="nc" id="L283">            text(&quot;Click 'c' to play against&quot;, 3*52+20, 7*48+90);</span>
+<span class="nc" id="L284">            text(&quot;a basic AI&quot;, 3*52+20, 7*52+100);</span>
         }
         // Draw game over screen
-<span class="nc bnc" id="L279" title="All 6 branches missed.">        if (whiteWin == true || blackWin == true || stalemate == true){</span>
-<span class="nc" id="L280">            fill(192, 192, 192);</span>
-<span class="nc" id="L281">            rect(14*48, 0, 3*48, 16*48);</span>
-<span class="nc" id="L282">            PFont myFont = createFont(&quot;Arial&quot;, 20);</span>
-<span class="nc" id="L283">            textFont(myFont);</span>
-<span class="nc bnc" id="L284" title="All 4 branches missed.">            if (whiteWin == true &amp;&amp; blackTotalSeconds &lt;= 0){</span>
-<span class="nc" id="L285">                fill(0);</span>
-<span class="nc" id="L286">                text(&quot;White Wins&quot;, 13*52+7, 5*48+30);</span>
-<span class="nc" id="L287">                text(&quot;on time !&quot;, 13*52+7, 5*52+30);</span>
-<span class="nc" id="L288">                text(&quot;Click 'r'&quot;, 13*52+7, 7*48+30);</span>
-<span class="nc" id="L289">                text(&quot;to restart&quot;, 13*52+7, 7*52+30);</span>
+<span class="nc bnc" id="L287" title="All 6 branches missed.">        if (whiteWin == true || blackWin == true || stalemate == true){</span>
+<span class="nc" id="L288">            fill(192, 192, 192);</span>
+<span class="nc" id="L289">            rect(14*48, 0, 3*48, 16*48);</span>
+<span class="nc" id="L290">            PFont myFont = createFont(&quot;Arial&quot;, 20);</span>
+<span class="nc" id="L291">            textFont(myFont);</span>
+<span class="nc bnc" id="L292" title="All 4 branches missed.">            if (whiteWin == true &amp;&amp; blackTotalSeconds &lt;= 0){</span>
+<span class="nc" id="L293">                fill(0);</span>
+<span class="nc" id="L294">                text(&quot;White Wins&quot;, 13*52+7, 5*48+30);</span>
+<span class="nc" id="L295">                text(&quot;on time !&quot;, 13*52+7, 5*52+30);</span>
+<span class="nc" id="L296">                text(&quot;Click 'r'&quot;, 13*52+7, 7*48+30);</span>
+<span class="nc" id="L297">                text(&quot;to restart&quot;, 13*52+7, 7*52+30);</span>
             }
-<span class="nc bnc" id="L291" title="All 4 branches missed.">            else if (blackWin == true &amp;&amp; whiteTotalSeconds &lt;= 0){</span>
-<span class="nc" id="L292">                fill(0);</span>
-<span class="nc" id="L293">                text(&quot;Black Wins&quot;, 13*52+7, 5*48+30);</span>
-<span class="nc" id="L294">                text(&quot;on time !&quot;, 13*52+7, 5*52+30);</span>
-<span class="nc" id="L295">                text(&quot;Click 'r'&quot;, 13*52+7, 7*48+30);</span>
-<span class="nc" id="L296">                text(&quot;to restart&quot;, 13*52+7, 7*52+30);</span>
+<span class="nc bnc" id="L299" title="All 4 branches missed.">            else if (blackWin == true &amp;&amp; whiteTotalSeconds &lt;= 0){</span>
+<span class="nc" id="L300">                fill(0);</span>
+<span class="nc" id="L301">                text(&quot;Black Wins&quot;, 13*52+7, 5*48+30);</span>
+<span class="nc" id="L302">                text(&quot;on time !&quot;, 13*52+7, 5*52+30);</span>
+<span class="nc" id="L303">                text(&quot;Click 'r'&quot;, 13*52+7, 7*48+30);</span>
+<span class="nc" id="L304">                text(&quot;to restart&quot;, 13*52+7, 7*52+30);</span>
             }
-<span class="nc bnc" id="L298" title="All 2 branches missed.">            else if (whiteWin == true){</span>
-<span class="nc" id="L299">                fill(0);</span>
-<span class="nc" id="L300">                text(&quot;Checkmate&quot;, 13*52+7, 5*48+30);</span>
-<span class="nc" id="L301">                text(&quot;white wins&quot;, 13*52+7, 5*52+30);</span>
-<span class="nc" id="L302">                text(&quot;Click 'r'&quot;, 13*52+7, 7*48+30);</span>
-<span class="nc" id="L303">                text(&quot;to restart&quot;, 13*52+7, 7*52+30);</span>
+<span class="nc bnc" id="L306" title="All 2 branches missed.">            else if (whiteWin == true){</span>
+<span class="nc" id="L307">                fill(0);</span>
+<span class="nc" id="L308">                text(&quot;Checkmate&quot;, 13*52+7, 5*48+30);</span>
+<span class="nc" id="L309">                text(&quot;white wins&quot;, 13*52+7, 5*52+30);</span>
+<span class="nc" id="L310">                text(&quot;Click 'r'&quot;, 13*52+7, 7*48+30);</span>
+<span class="nc" id="L311">                text(&quot;to restart&quot;, 13*52+7, 7*52+30);</span>
             }
-<span class="nc bnc" id="L305" title="All 2 branches missed.">            else if (blackWin == true){</span>
-<span class="nc" id="L306">                fill(0);</span>
-<span class="nc" id="L307">                text(&quot;checkmate&quot;, 13*52+7, 5*48+30);</span>
-<span class="nc" id="L308">                text(&quot;black wins&quot;, 13*52+7, 5*52+30);</span>
-<span class="nc" id="L309">                text(&quot;Click 'r'&quot;, 13*52+7, 7*48+30);</span>
-<span class="nc" id="L310">                text(&quot;to restart&quot;, 13*52+7, 7*52+30);</span>
+<span class="nc bnc" id="L313" title="All 2 branches missed.">            else if (blackWin == true){</span>
+<span class="nc" id="L314">                fill(0);</span>
+<span class="nc" id="L315">                text(&quot;checkmate&quot;, 13*52+7, 5*48+30);</span>
+<span class="nc" id="L316">                text(&quot;black wins&quot;, 13*52+7, 5*52+30);</span>
+<span class="nc" id="L317">                text(&quot;Click 'r'&quot;, 13*52+7, 7*48+30);</span>
+<span class="nc" id="L318">                text(&quot;to restart&quot;, 13*52+7, 7*52+30);</span>
             }
-<span class="nc bnc" id="L312" title="All 2 branches missed.">            else if (stalemate == true){</span>
-<span class="nc" id="L313">                fill(0);</span>
-<span class="nc" id="L314">                text(&quot;Stalemate&quot;, 13*52+7, 5*48+30);</span>
-<span class="nc" id="L315">                text(&quot;Click 'r'&quot;, 13*52+7, 6*48+30);</span>
-<span class="nc" id="L316">                text(&quot;to restart&quot;, 13*52+7, 6*52+30);</span>
+<span class="nc bnc" id="L320" title="All 2 branches missed.">            else if (stalemate == true){</span>
+<span class="nc" id="L321">                fill(0);</span>
+<span class="nc" id="L322">                text(&quot;Stalemate&quot;, 13*52+7, 5*48+30);</span>
+<span class="nc" id="L323">                text(&quot;Click 'r'&quot;, 13*52+7, 6*48+30);</span>
+<span class="nc" id="L324">                text(&quot;to restart&quot;, 13*52+7, 6*52+30);</span>
             }
         }
-<span class="nc" id="L319">    }</span>
+<span class="nc" id="L327">    }</span>
 	
     /**
      * The main method to start the application.
@@ -324,7 +332,7 @@ import processing.core.PFont;
      * @param args The command-line arguments.
      */
     public static void main(String[] args) {
-<span class="nc" id="L327">        PApplet.main(&quot;XXLChess.App&quot;);</span>
-<span class="nc" id="L328">    }</span>
+<span class="nc" id="L335">        PApplet.main(&quot;XXLChess.App&quot;);</span>
+<span class="nc" id="L336">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

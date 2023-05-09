@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="XXLChess.AppTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-05-09T03:11:02" hostname="MacBook-Pro-6.local" time="0.094">
+<testsuite name="XXLChess.AppTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2023-05-09T05:43:16" hostname="MacBook-Pro-6.local" time="0.142">
   <properties/>
-  <testcase name="testSettings()" classname="XXLChess.AppTest" time="0.081"/>
-  <testcase name="testDraw()" classname="XXLChess.AppTest" time="0.002"/>
-  <testcase name="testKeyPressed()" classname="XXLChess.AppTest" time="0.002"/>
-  <testcase name="testMouseClicked()" classname="XXLChess.AppTest" time="0.002"/>
+  <testcase name="testSettings()" classname="XXLChess.AppTest" time="0.086"/>
+  <testcase name="testStalemate()" classname="XXLChess.AppTest" time="0.007"/>
+  <testcase name="testWhiteWin()" classname="XXLChess.AppTest" time="0.003"/>
+  <testcase name="testMove()" classname="XXLChess.AppTest" time="0.001"/>
+  <testcase name="testIsWhiteTurn()" classname="XXLChess.AppTest" time="0.001"/>
+  <testcase name="testFirstClick()" classname="XXLChess.AppTest" time="0.001"/>
+  <testcase name="testWhiteScore()" classname="XXLChess.AppTest" time="0.002"/>
+  <testcase name="testBlackWin()" classname="XXLChess.AppTest" time="0.0"/>
+  <testcase name="testTitleScreen()" classname="XXLChess.AppTest" time="0.004"/>
+  <testcase name="testInitialSetup()" classname="XXLChess.AppTest" time="0.005"/>
+  <testcase name="testInCheck()" classname="XXLChess.AppTest" time="0.003"/>
+  <testcase name="testBlackScore()" classname="XXLChess.AppTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

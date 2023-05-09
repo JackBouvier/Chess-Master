@@ -162,7 +162,7 @@ class chessPiece{
         if (this.x == dx && this.y == dy){
             App.boardArray[App.savedPieceY][App.savedPieceX].setPiece(null);
             App.boardArray[y][x].setPiece(App.selectedPiece);
-            TileColour.removeTrail();
+            TileColour.removeTrail(App.boardArray);
             if (App.boardArray[y][x].getTile().getTileColor().equals("white")){
                 App.boardArray[y][x].getTile().setTileColor("yellow1");
             }

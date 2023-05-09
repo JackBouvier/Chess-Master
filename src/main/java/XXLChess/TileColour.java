@@ -10,27 +10,27 @@ public class TileColour {
     /**
      * Refreshes the board by resetting tile colors to their original state.
      */
-    public static void refreshBoard(){
+    public static void refreshBoard(Tuple<chessPiece, chessTile>[][] boardArray){
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 14; j++) {
-                chessTile tile = App.boardArray[i][j].getTile();
+                chessTile tile = boardArray[i][j].getTile();
                 if (tile.getTileColor().equals("blue1")){
-                    App.boardArray[i][j].getTile().setTileColor("white");
+                    boardArray[i][j].getTile().setTileColor("white");
                 }
                 else if (tile.getTileColor().equals("blue2")){
-                    App.boardArray[i][j].getTile().setTileColor("green");
+                    boardArray[i][j].getTile().setTileColor("green");
                 }
                 else if (tile.getTileColor().equals("red1")){
-                    App.boardArray[i][j].getTile().setTileColor("white");
+                    boardArray[i][j].getTile().setTileColor("white");
                 }
                 else if (tile.getTileColor().equals("red2")){
-                    App.boardArray[i][j].getTile().setTileColor("green");
+                    boardArray[i][j].getTile().setTileColor("green");
                 }
                 else if (tile.getTileColor().equals("lightGreen1")){
-                    App.boardArray[i][j].getTile().setTileColor("white");
+                    boardArray[i][j].getTile().setTileColor("white");
                 }
                 else if (tile.getTileColor().equals("lightGreen2")){
-                    App.boardArray[i][j].getTile().setTileColor("green");
+                    boardArray[i][j].getTile().setTileColor("green");
                 }
             }
         }
@@ -39,15 +39,15 @@ public class TileColour {
     /**
      * Removes the trail of the last moved piece by resetting the tile colors.
      */
-    public static void removeTrail(){
+    public static void removeTrail(Tuple<chessPiece, chessTile>[][] boardArray){
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 14; j++) {
-                chessTile tile = App.boardArray[i][j].getTile();
+                chessTile tile = boardArray[i][j].getTile();
                 if (tile.getTileColor().equals("yellow1")){
-                    App.boardArray[i][j].getTile().setTileColor("white");
+                    boardArray[i][j].getTile().setTileColor("white");
                 }
                 else if (tile.getTileColor().equals("yellow2")){
-                    App.boardArray[i][j].getTile().setTileColor("green");
+                    boardArray[i][j].getTile().setTileColor("green");
                 }
             }
         }
@@ -56,15 +56,15 @@ public class TileColour {
     /**
      * Removes the check indication by resetting the tile colors.
      */
-    public static void removeCheck(){
+    public static void removeCheck(Tuple<chessPiece, chessTile>[][] boardArray){
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 14; j++) {
-                chessTile tile = App.boardArray[i][j].getTile();
+                chessTile tile = boardArray[i][j].getTile();
                 if (tile.getTileColor().equals("DarkRed1")){
-                    App.boardArray[i][j].getTile().setTileColor("white");
+                    boardArray[i][j].getTile().setTileColor("white");
                 }
                 else if (tile.getTileColor().equals("DarkRed2")){
-                    App.boardArray[i][j].getTile().setTileColor("green");
+                    boardArray[i][j].getTile().setTileColor("green");
                 }
             }
         }

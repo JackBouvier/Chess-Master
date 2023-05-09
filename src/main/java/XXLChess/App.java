@@ -75,6 +75,14 @@ public class App extends PApplet {
         boardSetup.initialPieces(pieceInput, boardArray);
     }
 
+    public static void initializeForTesting() {
+        // Initialize the necessary variables for testing
+        Board_Array = new BoardArray();
+        boardArray = Board_Array.getBoardArray(); 
+        timerAndScore = new TimerAndScore(null);
+        boardSetup = new boardSetup(null);
+    }
+
     /**
      * Receive key pressed signal from the keyboard.
     */
@@ -165,21 +173,21 @@ public class App extends PApplet {
             }
             else if (tempPiece != null && !firstClick && tempPiece.getPieceColor().equals(selectedPiece.getPieceColor())){
                 if (tempPiece.getPieceColor().equals("white") && isWhiteTurn == true){
-                    TileColour.refreshBoard();
+                    TileColour.refreshBoard(App.boardArray);
                     selectedPiece = tempPiece;
                     TileColour.showMoves(validMoves, selectedPiece);
                     firstClick = false;
                 }
                 if (tempPiece.getPieceColor().equals("black") && isWhiteTurn == false){
-                    TileColour.refreshBoard();
+                    TileColour.refreshBoard(App.boardArray);
                     selectedPiece = tempPiece;
                     TileColour.showMoves(validMoves, selectedPiece);
                     firstClick = false;
                 }
             }
             else if (selectedPiece != null && !firstClick && (validMoves.contains(tempTile))) {
-                TileColour.refreshBoard();
-                TileColour.removeCheck();
+                TileColour.refreshBoard(App.boardArray);
+                TileColour.removeCheck(App.boardArray);
                 selectedTile = tempTile;
                 savedPieceX = selectedPiece.getPieceX();
                 savedPieceY = selectedPiece.getPieceY();
@@ -189,7 +197,7 @@ public class App extends PApplet {
                 move = true;
             }
             else {
-                TileColour.refreshBoard();
+                TileColour.refreshBoard(App.boardArray);
                 validMoves.clear();
                 firstClick = true;
             }

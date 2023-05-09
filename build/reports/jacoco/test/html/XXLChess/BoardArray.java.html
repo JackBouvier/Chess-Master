@@ -162,7 +162,7 @@ class chessPiece{
 <span class="nc bnc" id="L162" title="All 4 branches missed.">        if (this.x == dx &amp;&amp; this.y == dy){</span>
 <span class="nc" id="L163">            App.boardArray[App.savedPieceY][App.savedPieceX].setPiece(null);</span>
 <span class="nc" id="L164">            App.boardArray[y][x].setPiece(App.selectedPiece);</span>
-<span class="nc" id="L165">            TileColour.removeTrail();</span>
+<span class="nc" id="L165">            TileColour.removeTrail(App.boardArray);</span>
 <span class="nc bnc" id="L166" title="All 2 branches missed.">            if (App.boardArray[y][x].getTile().getTileColor().equals(&quot;white&quot;)){</span>
 <span class="nc" id="L167">                App.boardArray[y][x].getTile().setTileColor(&quot;yellow1&quot;);</span>
             }
