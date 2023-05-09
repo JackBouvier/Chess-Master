@@ -77,8 +77,8 @@ import java.util.ArrayList;
      * @param selectedPiece   the chessPiece that is selected
      */
     public static void showMoves(ArrayList&lt;chessTile&gt; validMoves, chessPiece selectedPiece) {
-<span class="fc" id="L80">        int pieceX = selectedPiece.getPieceX();</span>
-<span class="fc" id="L81">        int pieceY = selectedPiece.getPieceY();</span>
+<span class="nc" id="L80">        int pieceX = selectedPiece.getPieceX();</span>
+<span class="nc" id="L81">        int pieceY = selectedPiece.getPieceY();</span>
 <span class="nc bnc" id="L82" title="All 2 branches missed.">        if (App.boardArray[pieceY][pieceX].getTile().getTileColor().equals(&quot;white&quot;)) {</span>
 <span class="nc" id="L83">            App.boardArray[pieceY][pieceX].getTile().setTileColor(&quot;lightGreen1&quot;);</span>
 <span class="nc bnc" id="L84" title="All 2 branches missed.">        } else if (App.boardArray[pieceY][pieceX].getTile().getTileColor().equals(&quot;green&quot;)) {</span>

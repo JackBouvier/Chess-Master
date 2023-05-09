@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="XXLChess.AmazonTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-09T05:43:15" hostname="MacBook-Pro-6.local" time="1.112">
+<testsuite name="XXLChess.AmazonTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-09T05:43:53" hostname="MacBook-Pro-6.local" time="3.635">
   <properties/>
-  <testcase name="testGetMoves()" classname="XXLChess.AmazonTest" time="1.112"/>
+  <testcase name="testGetMoves()" classname="XXLChess.AmazonTest" time="3.635"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
