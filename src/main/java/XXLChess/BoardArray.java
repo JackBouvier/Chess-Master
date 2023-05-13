@@ -39,8 +39,11 @@ class chessTile {
         if (this.inputColor.equals("green")) {
             app.fill(2, 88, 57);
         }
-        if (this.inputColor.equals("blue1") || this.inputColor.equals("blue2")) {
+        if (this.inputColor.equals("blue1")) {
             app.fill(134, 197, 218);
+        }
+        if (this.inputColor.equals("blue2")) {
+            app.fill(107, 158, 174);
         }
         if (this.inputColor.equals("lightGreen1") || this.inputColor.equals("lightGreen2")) {
             app.fill(75, 200, 107);

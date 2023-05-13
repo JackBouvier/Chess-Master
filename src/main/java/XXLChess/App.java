@@ -87,6 +87,26 @@ public class App extends PApplet {
      * Receive key pressed signal from the keyboard.
     */
     public void keyPressed(){
+        if (key == 'e'){
+            whiteTotalSeconds = json.getJSONObject("time_controls").getJSONObject("player").getInt("seconds");
+            blackTotalSeconds = json.getJSONObject("time_controls").getJSONObject("cpu").getInt("seconds");
+            isWhiteTurn = true;
+            Ai = false;
+            firstClick = true;
+            move = false;
+            whiteScore = 0;
+            blackScore = 0;
+            whiteWin = false;
+            blackWin = false;
+            stalemate = false;
+            whiteTimeRemaining = "";
+            blackTimeRemaining = "";
+            whiteTickCount = 0;
+            blackTickCount = 0;
+            inCheck = false;
+            titleScreen = true;
+            setup();
+        }
         if (whiteWin == true || blackWin == true || stalemate == true){
             if (key == 'r'){
                 whiteTotalSeconds = json.getJSONObject("time_controls").getJSONObject("player").getInt("seconds");
